@@ -16,26 +16,27 @@ service.interceptors.response.use(
          * code非0是抛错
          */
         const res = response.data;
-        if (res.error_code == 1102){
-            Message({
-                showClose: true,
-                message: "请重新登录",
-                type: 'error',
-                duration: 5 * 1000
-            });
-            location.href = '/';
-        }
-        else if (res.error_code !== 0) {
-            Message({
-                showClose: true,
-                message: res.msg,
-                type: 'error',
-                duration: 5 * 1000
-            });
-            return Promise.reject(error);
-        } else {
-            return response.data;
-        }
+        return res;
+        // if (res.error_code == 1102){
+        //     Message({
+        //         showClose: true,
+        //         message: "请重新登录",
+        //         type: 'error',
+        //         duration: 5 * 1000
+        //     });
+        //     location.href = '/';
+        // }
+        // else if (res.error_code !== 0) {
+        //     Message({
+        //         showClose: true,
+        //         message: res.msg,
+        //         type: 'error',
+        //         duration: 5 * 1000
+        //     });
+        //     return Promise.reject(error);
+        // } else {
+        //     return response.data;
+        // }
     },
     error => {
         console.log('err' + error);// for debug

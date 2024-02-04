@@ -167,12 +167,10 @@
             submitForm(formName) {
                 this.$refs[formName].validate((valid) => {
                     if (valid) {
-                        console.log("test login")
                         this.listLoading = true;
                         if (this.type == 'admin') {
-                            console.log("admin")
-                            const response = {data: {token : '111'}}
-                            this.listLoading = false;
+                            AdminLogin(this.ruleForm).then(response => {
+                                    this.listLoading = false;
                                     this.$message({
                                         type: 'success',
                                         message: '登录成功!'
@@ -181,23 +179,14 @@
                                     localStorage.setItem('token', response.data.token);
                                     localStorage.setItem('type', 'admin');
                                     this.$router.push('/admin/home');
-                            // AdminLogin(this.ruleForm).then(response => {
-                            //         this.listLoading = false;
-                            //         this.$message({
-                            //             type: 'success',
-                            //             message: '登录成功!'
-                            //         });
-                            //         localStorage.setItem('admin_username', this.ruleForm.username);
-                            //         localStorage.setItem('token', response.data.token);
-                            //         localStorage.setItem('type', 'admin');
-                            //         this.$router.push('/admin/home');
-                            //     },
-                            //     error => {
-                            //         this.listLoading = false;
-                            //     });
+                                },
+                                error => {
+                                    this.listLoading = false;
+                                });
                         } else if (this.type == 'customer') {
                             this.listLoading = false;
-                            const response = {data: {token : '111'}}
+                            CustomerLogin(this.ruleForm).then(response => {
+                                    this.listLoading = false;
                                     this.$message({
                                         type: 'success',
                                         message: '登录成功!'
@@ -206,46 +195,25 @@
                                     localStorage.setItem('customer_token', response.data.token);
                                     localStorage.setItem('type', 'customer');
                                     this.$router.push('/customer/home');
-                            // CustomerLogin(this.ruleForm).then(response => {
-                            //         this.listLoading = false;
-                            //         this.$message({
-                            //             type: 'success',
-                            //             message: '登录成功!'
-                            //         });
-                            //         localStorage.setItem('customer_username', this.ruleForm.username);
-                            //         localStorage.setItem('customer_token', response.data.token);
-                            //         localStorage.setItem('type', 'customer');
-                            //         this.$router.push('/customer/home');
-                            //     },
-                            //     error => {
-                            //         this.listLoading = false;
-                            //     });
+                                },
+                                error => {
+                                    this.listLoading = false;
+                                });
                         } else if (this.type == 'company') {
-                            const response = {data: {token : '111'}}
-                            console.log("customer")
-                            this.listLoading = false;
-                            this.$message({
-                                type: 'success',
-                                message: '登录成功!'
-                            });
-                            localStorage.setItem('company_username', this.ruleForm.username);
-                            localStorage.setItem('company_token', response.data.token);
-                            localStorage.setItem('type', 'company');
-                            this.$router.push('/company/home');
-                            // CompanyLogin(this.ruleForm).then(response => {
-                            //         this.listLoading = false;
-                            //         this.$message({
-                            //             type: 'success',
-                            //             message: '登录成功!'
-                            //         });
-                            //         localStorage.setItem('company_username', this.ruleForm.username);
-                            //         localStorage.setItem('company_token', response.data.token);
-                            //         localStorage.setItem('type', 'company');
-                            //         this.$router.push('/company/home');
-                            //     },
-                            //     error => {
-                            //         this.listLoading = false;
-                            //     });
+                            CompanyLogin(this.ruleForm).then(response => {
+                                    this.listLoading = false;
+                                    this.$message({
+                                        type: 'success',
+                                        message: '登录成功!'
+                                    });
+                                    localStorage.setItem('company_username', this.ruleForm.username);
+                                    localStorage.setItem('company_token', response.token);
+                                    localStorage.setItem('type', 'company');
+                                    this.$router.push('/company/home');
+                                },
+                                error => {
+                                    this.listLoading = false;
+                                });
                         } else {
                             console.log('error submit!!');
                             return false;
