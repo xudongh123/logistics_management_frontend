@@ -2,8 +2,8 @@
     <el-row>
         <el-row>
             <el-breadcrumb separator="/">
-                <el-breadcrumb-item :to="{ path: '../home' }">首页</el-breadcrumb-item>
-                <el-breadcrumb-item>运单管理</el-breadcrumb-item>
+                <el-breadcrumb-item :to="{ path: '../home' }">货单管理</el-breadcrumb-item>
+                <el-breadcrumb-item>我的货单</el-breadcrumb-item>
             </el-breadcrumb>
         </el-row>
 
@@ -61,7 +61,7 @@
                         </div>
                     </template>
                 </el-table-column>
-
+<!-- 
                 <el-table-column
                     label="单据打印" width="180">
                     <template scope="scope">
@@ -75,7 +75,7 @@
                             <el-tag type="gray" >未处理</el-tag>
                         </div>
                     </template>
-                </el-table-column>
+                </el-table-column> -->
 
 
                 <el-table-column

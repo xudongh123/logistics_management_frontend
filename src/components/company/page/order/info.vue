@@ -1,8 +1,7 @@
 <template>
     <el-row>
         <el-breadcrumb separator="/">
-            <el-breadcrumb-item :to="{ path: '../../home' }">首页</el-breadcrumb-item>
-            <el-breadcrumb-item :to="{ path: '../order' }">我的运单</el-breadcrumb-item>
+            <el-breadcrumb-item :to="{ path: '../order' }">货单管理</el-breadcrumb-item>
             <el-breadcrumb-item>订单详情</el-breadcrumb-item>
         </el-breadcrumb>
 

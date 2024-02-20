@@ -32,72 +32,60 @@
                     {
                         icon: 'el-icon-date',
                         index: '2',
-                        title: '货物管理',
+                        title: '车队管理',
                         subs: [
                             {
                                 index: '/company/home/driver',
-                                title: '货物追踪'
+                                title: '司机管理'
                             },
                             {
                                 index: '/company/home/car',
-                                title: '库存管理'
-                            },
-                            {
-                                index: '/company/home/car',
-                                title: '货物分类'
+                                title: '车辆管理'
                             }
                         ]
                     },
                     {
                         icon: 'el-icon-date',
-                        index: '2',
-                        title: '车辆管理',
+                        index: '3',
+                        title: '货单管理',
                         subs: [
                             {
-                                index: '/company/home/driver',
-                                title: '车辆状态监控'
+                            icon: 'el-icon-star-off',
+                            index: '/company/home/order/add',
+                            title: '创建货单',
                             },
+                            // {
+                            //     icon: 'el-icon-star-off',
+                            //     index: '/company/home/order_open',
+                            //     title: '抢单市场',
+                            // },
                             {
-                                index: '/company/home/car',
-                                title: '费用跟踪'
-                            }
+                                icon: 'el-icon-star-on',
+                                index: '/company/home/order',
+                                title: '我的货单',
+                            },
                         ]
                     },
-                    // {
-                    //     icon: 'el-icon-star-off',
-                    //     index: '/company/home/order/add',
-                    //     title: '创建运单',
-                    // },
-                    // {
-                    //     icon: 'el-icon-star-off',
-                    //     index: '/company/home/order_open',
-                    //     title: '抢单市场',
-                    // },
-                    // {
-                    //     icon: 'el-icon-star-on',
-                    //     index: '/company/home/order',
-                    //     title: '我的运单',
-                    // },
                     {
                         icon: 'el-icon-share',
                         index: '/company/home/profit',
-                        title: '路线管理'
+                        title: '费用跟踪'
                     },
                     {
                         icon: 'el-icon-menu',
                         title: '账户管理',
-                        index: '3',
+                        index: '4',
                         subs: [
                             {
                                 icon: 'el-icon-star-on',
                                 index: '/company/home/account',
-                                title: '用户管理'
+                                title: '个人中心'
                             },
                             {
                                 icon: 'el-icon-plus',
                                 index: '/company/home/recharge',
-                                title: '权限管理'
-                            },
+                                title: '账户充值'
+                            }
                         ]
                     },
                     {

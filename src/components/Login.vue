@@ -1,15 +1,18 @@
 <template>
     <div class="login-wrap" >
-        <div class="ms-title">欢迎使用物流管理系统</div>
+        <div class="ms-title">
+            <span class="blue-text">物流</span>
+            <span class="white-text">管理系统</span>
+        </div>
         <div class="ms-login"  v-loading.body="listLoading" element-loading-text="正在登录中">
 
             <template>
                 <el-radio class="radio" v-model="type" label="company">用户</el-radio>
                 <el-radio class="radio" v-model="type" style="float:right" label="admin">管理员</el-radio>
             </template>
-            <el-form :model="ruleForm" :rules="rules" ref="ruleForm" label-width="0px" class="demo-ruleForm" style="margin-top: 30px">
+            <el-form :model="ruleForm" :rules="rules" ref="ruleForm" label-width="px" class="demo-ruleForm" style="margin-top: 30px">
                 <el-form-item prop="username">
-                    <el-input v-model="ruleForm.username" placeholder="请输入用户名"></el-input>
+                    <el-input class="custom-input" v-model="ruleForm.username" placeholder="请输入用户名"></el-input>
                 </el-form-item>
                 <el-form-item prop="password">
                     <el-input type="password" placeholder="请输入密码" v-model="ruleForm.password" @keyup.enter.native="submitForm('ruleForm')"></el-input>
@@ -207,7 +210,7 @@
                                         message: '登录成功!'
                                     });
                                     localStorage.setItem('company_username', this.ruleForm.username);
-                                    localStorage.setItem('company_token', response.token);
+                                    localStorage.setItem('company_token', response.data.token);
                                     localStorage.setItem('type', 'company');
                                     this.$router.push('/company/home');
                                 },
@@ -233,24 +236,25 @@
     }
     .ms-title{
         position: absolute;
-        top:50%;
+        top:70%;
+        left:15%;
         width:100%;
-        margin-top: -230px;
+        margin-top: -250px;
         text-align: center;
-        font-size:30px;
-        color: #fff;
+        font-size: 85px;
+        color: #e3e8e8;
+        font-weight: bold;
 
     }
     .ms-login{
         position: absolute;
-        left:50%;
+        left:30%;
         top:50%;
         width:300px;
         height:230px;
         margin:-150px 0 0 -190px;
         padding:40px;
-        border-radius: 5px;
-        background: #fff;
+        background: rgba(174, 176, 178, 0.5); /* 半透明的白色 */
     }
     .login-btn{
         text-align: center;
@@ -259,4 +263,11 @@
         width:100%;
         height:36px;
     }
+    .blue-text {
+        color: #6c9ac8;
+    }
+    .white-text {
+        color: white;
+    }
+
 </style>

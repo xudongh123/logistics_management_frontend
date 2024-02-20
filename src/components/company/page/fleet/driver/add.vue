@@ -16,18 +16,18 @@
                     </el-col>
                     <el-col :span="8">
                         <el-form-item label="手机号" prop="phone">
-                            <el-input v-model="ruleForm.phone" placeholder="司机APP客户端登录用户名"></el-input>
+                            <el-input v-model="ruleForm.phone" ></el-input>
                         </el-form-item>
                     </el-col>
                 </el-row>
-                <el-row>
+                <!-- <el-row>
                     <el-col :span="8">
                         <el-form-item label="APP登录密码">
                             <el-input type="password" v-model="ruleForm.password" placeholder="司机APP客户端登录密码"></el-input>
                             <el-tag type="primary">默认为123456</el-tag>
                         </el-form-item>
                     </el-col>
-                </el-row>
+                </el-row> -->
                 <el-row>
                     <el-col :span="8">
                         <el-form-item label="任务短信通知">
@@ -51,14 +51,7 @@
                     </el-col>
                     <el-col :span="8" >
                         <el-form-item label="开户行">
-                            <el-select v-model="ruleForm.bank_addr" clearable placeholder="请选择">
-                                <el-option
-                                    v-for="item in bank_list"
-                                    :key="item.name"
-                                    :label="item.name"
-                                    :value="item.name">
-                                </el-option>
-                            </el-select>
+                            <el-input v-model="ruleForm.bank_addr"></el-input>
                         </el-form-item>
                     </el-col>
                 </el-row>
@@ -262,8 +255,8 @@
                 </el-row>
 
                 <el-form-item>
-                    <el-button @click="addDriverLicense" v-if="!ruleForm.driver_license_visible" icon="plus"  type="info">增加驾驶证</el-button>
-                    <el-button @click="addLicense" icon="plus"  type="info">新增其他证件</el-button>
+                    <!-- <el-button @click="addDriverLicense" v-if="!ruleForm.driver_license_visible" icon="plus"  type="info">增加驾驶证</el-button>
+                    <el-button @click="addLicense" icon="plus"  type="info">新增其他证件</el-button> -->
 
                     <el-row style="margin-top: 10px">
                     <el-button type="success" @click="submitForm('ruleForm')">立即创建</el-button>
@@ -333,15 +326,15 @@
         },
         methods: {
             fetchData() {
-                getDefindAll({type_code:'driver_level'}).then(response => {
-                    this.driver_level = response.data;
-                });
-                getDefindAll({type_code:'bank_list'}).then(response => {
-                    this.bank_list = response.data;
-                });
-                getDefindAll({type_code:'driver_license_type'}).then(response => {
-                    this.driver_license_type = response.data;
-                });
+                // getDefindAll({type_code:'driver_level'}).then(response => {
+                //     this.driver_level = response.data;
+                // });
+                // getDefindAll({type_code:'bank_list'}).then(response => {
+                //     this.bank_list = response.data;
+                // });
+                // getDefindAll({type_code:'driver_license_type'}).then(response => {
+                //     this.driver_license_type = response.data;
+                // });
                 getUploadToken().then(response => {
                     this.uploadToken.token = response.data;
                 });

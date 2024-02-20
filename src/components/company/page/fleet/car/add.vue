@@ -16,14 +16,7 @@
                     </el-col>
                     <el-col :span="7">
                         <el-form-item label="车辆类型" prop="type">
-                            <el-select v-model="ruleForm.type" clearable placeholder="请选择">
-                                <el-option
-                                    v-for="item in car_type"
-                                    :key="item.name"
-                                    :label="item.name"
-                                    :value="item.name">
-                                </el-option>
-                            </el-select>
+                            <el-input v-model="ruleForm.type" placeholder="请输入车辆类型"></el-input>
                         </el-form-item>
                     </el-col>
                 </el-row>
@@ -61,26 +54,12 @@
                 <el-row>
                     <el-col :span="7">
                         <el-form-item label="能耗类型">
-                            <el-select v-model="ruleForm.energy" clearable placeholder="请选择">
-                                <el-option
-                                    v-for="item in car_energy"
-                                    :key="item.name"
-                                    :label="item.name"
-                                    :value="item.name">
-                                </el-option>
-                            </el-select>
+                            <el-input v-model="ruleForm.energy"></el-input>
                         </el-form-item>
                     </el-col>
                     <el-col :span="7">
                         <el-form-item label="车辆长度">
-                            <el-select v-model="ruleForm.length" clearable placeholder="请选择">
-                                <el-option
-                                    v-for="item in car_lenth"
-                                    :key="item.name"
-                                    :label="item.name"
-                                    :value="item.name">
-                                </el-option>
-                            </el-select>
+                            <el-input v-model="ruleForm.length"></el-input>
                         </el-form-item>
                     </el-col>
                     <el-col :span="7">
@@ -99,14 +78,7 @@
                     </el-col>
                     <el-col :span="7">
                         <el-form-item label="车辆品牌">
-                            <el-select v-model="ruleForm.brand" clearable placeholder="请选择">
-                                <el-option
-                                    v-for="item in car_brand"
-                                    :key="item.name"
-                                    :label="item.name"
-                                    :value="item.name">
-                                </el-option>
-                            </el-select>
+                            <el-input v-model="ruleForm.brand"></el-input>
                         </el-form-item>
                     </el-col>
                     <el-col :span="7">
@@ -197,7 +169,7 @@
                         </el-form-item>
                     </el-col>
                 </el-row>
-                <el-row>
+                <!-- <el-row>
                     <el-col :span="10">
                         <el-form-item label="车头照片">
                             <el-upload
@@ -228,7 +200,7 @@
                             </el-upload>
                         </el-form-item>
                     </el-col>
-                </el-row>
+                </el-row> -->
 
                 <el-row>
                     <el-col :span="12">
@@ -327,9 +299,9 @@
                     </el-col>
                 </el-row>
 
-                <el-form-item style="margin-top: 30px">
+                <!-- <el-form-item style="margin-top: 30px">
                 <el-button @click="addLicense" icon="plus"  type="info">新增证件</el-button>
-                </el-form-item>
+                </el-form-item> -->
 
                 <el-form-item style="margin-top: 30px" >
                     <el-button type="primary" @click="submitForm('ruleForm')">立即创建</el-button>
@@ -415,21 +387,21 @@
         },
         methods: {
             fetchData() {
-                getDefindAll({type_code:'car_type'}).then(response => {
-                    this.car_type = response.data;
-                });
-                getDefindAll({type_code:'car_energy'}).then(response => {
-                    this.car_energy = response.data;
-                });
-                getDefindAll({type_code:'car_lenth'}).then(response => {
-                    this.car_lenth = response.data;
-                });
-                getDefindAll({type_code:'car_brand'}).then(response => {
-                    this.car_brand = response.data;
-                });
-                getDefindAll({type_code:'car_license_type'}).then(response => {
-                    this.car_license_type = response.data;
-                });
+                // getDefindAll({type_code:'car_type'}).then(response => {
+                //     this.car_type = response.data;
+                // });
+                // getDefindAll({type_code:'car_energy'}).then(response => {
+                //     this.car_energy = response.data;
+                // });
+                // getDefindAll({type_code:'car_lenth'}).then(response => {
+                //     this.car_lenth = response.data;
+                // });
+                // getDefindAll({type_code:'car_brand'}).then(response => {
+                //     this.car_brand = response.data;
+                // });
+                // getDefindAll({type_code:'car_license_type'}).then(response => {
+                //     this.car_license_type = response.data;
+                // });
                 getUploadToken().then(response => {
                     this.uploadToken.token = response.data;
                 });

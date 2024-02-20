@@ -1,9 +1,8 @@
 <template>
     <el-row v-loading.body="listLoading" element-loading-text="正在提交，请稍后...">
         <el-breadcrumb separator="/">
-            <el-breadcrumb-item :to="{ path: '../../home' }">首页</el-breadcrumb-item>
-            <el-breadcrumb-item :to="{ path: '../order' }">我的运单</el-breadcrumb-item>
-            <el-breadcrumb-item>新建订单</el-breadcrumb-item>
+            <el-breadcrumb-item :to="{ path: '../order' }">货单管理</el-breadcrumb-item>
+            <el-breadcrumb-item>创建货单</el-breadcrumb-item>
         </el-breadcrumb>
 
         <el-row style="margin-top: 50px">
@@ -87,7 +86,7 @@
                             </el-col>
                         </el-row>
 
-                        <el-row>
+                        <!-- <el-row>
                                 <el-form-item label="指定物流公司接单">
                                     <el-switch
                                         v-model="ruleForm.is_company">
@@ -107,7 +106,7 @@
                                     </el-select>
                                 </el-form-item>
                             </el-col>
-                        </el-row>
+                        </el-row> -->
 
                     </el-col>
                 </el-row>
@@ -295,10 +294,10 @@
         },
         methods: {
             initWeb(){
-                CompanyInfoListSelect().then(response => {
-                    this.companyList = response.data;
-                    console.log(this.companyList);
-                });
+                // CompanyInfoListSelect().then(response => {
+                //     this.companyList = response.data;
+                //     console.log(this.companyList);
+                // });
             },
             //删除货物
             removeGoods(index) {

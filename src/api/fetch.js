@@ -15,8 +15,8 @@ service.interceptors.response.use(
         /**
          * code非0是抛错
          */
-        const res = response.data;
-        return res;
+        //const res = response.data;
+        return response;
         // if (res.error_code == 1102){
         //     Message({
         //         showClose: true,

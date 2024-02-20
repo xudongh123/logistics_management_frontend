@@ -4,7 +4,7 @@
         <div class="user-info">
             <el-dropdown trigger="click" @command="handleCommand">
                 <span class="el-dropdown-link">
-                    <img class="user-logo" :src="img">
+                    <img class="user-logo" src="/static/img/user.png">
                     {{nickname}}
                 </span>
                 <el-dropdown-menu slot="dropdown">
@@ -56,7 +56,7 @@
         font-size: 22px;
         line-height: 70px;
         color: #fff;
-        background: #2c3e50;
+        background: #6fa3d7;  /* 创建渐变背景 */
     }
     .header .logo{
         float: left;

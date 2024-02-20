@@ -3,7 +3,7 @@
         <el-row>
             <el-breadcrumb separator="/">
                 <el-breadcrumb-item :to="{ path: '../home' }">首页</el-breadcrumb-item>
-                <el-breadcrumb-item>财务管理</el-breadcrumb-item>
+                <el-breadcrumb-item>费用跟踪</el-breadcrumb-item>
             </el-breadcrumb>
         </el-row>
 
