@@ -27,14 +27,14 @@
                 }
             }
         },
-        created(){
-            getInfo(this.loadingParam).then(response => {
-                this.img = response.data.userInfo.img;
-                if(response.data.userInfo.nickname){
-                    this.nickname = response.data.userInfo.nickname;
-                }
-            });
-        },
+        // created(){
+        //     getInfo(this.loadingParam).then(response => {
+        //         this.img = response.data.userInfo.img;
+        //         if(response.data.userInfo.nickname){
+        //             this.nickname = response.data.userInfo.nickname;
+        //         }
+        //     });
+        // },
         methods:{
             handleCommand(command) {
                 if(command == 'loginout'){

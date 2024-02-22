@@ -17,8 +17,8 @@
                 <el-form-item label="户名" prop="bbank_name">
                     <el-input v-model="ruleForm.bbank_name"></el-input>
                 </el-form-item>
-                <el-form-item label="账户" prop="bbank_number">
-                    <el-input v-model="ruleForm.bbank_number"></el-input>
+                <el-form-item label="账户" prop="bbankNumber">
+                    <el-input v-model="ruleForm.bbankNumber"></el-input>
                 </el-form-item>
                 <el-form-item label="开户行" prop="bbank">
                     <el-input v-model="ruleForm.bbank"></el-input>
@@ -51,7 +51,7 @@
                     aname: "",
                     bname: "",
                     bbank_name: "",
-                    bbank_number: "",
+                    bbankNumber: "",
                     bbank: ""
                 },
                 listLoading: false,
@@ -65,7 +65,7 @@
                     bbank_name: [
                         { required: true, message: '请输入户名'},
                     ],
-                    bbank_number: [
+                    bbankNumber: [
                         { required: true, message: '请输入账号'},
                     ],
                     bbank: [
@@ -85,7 +85,7 @@
                     this.ruleForm.aname = this.order.orderContract.aname;
                     this.ruleForm.bname = this.order.orderContract.bname;
                     this.ruleForm.bbank_name = this.order.orderContract.bbank_name;
-                    this.ruleForm.bbank_number = this.order.orderContract.bbank_number;
+                    this.ruleForm.bbankNumber = this.order.orderContract.bbankNumber;
                     this.ruleForm.bbank = this.order.orderContract.bbank;
                     this.ruleForm.id = this.order.orderContract.id;
                     this.listLoading = false;

@@ -48,8 +48,8 @@
                 </el-row>
                 <el-row>
                     <el-col :span="12">
-                        <el-form-item label="身份证号"  prop="idcard">
-                            <el-input v-model="ruleForm.idcard" placeholder="司机身份证号"></el-input>
+                        <el-form-item label="身份证号"  prop="idCard">
+                            <el-input v-model="ruleForm.idCard" placeholder="司机身份证号"></el-input>
                         </el-form-item>
                     </el-col>
                 </el-row>
@@ -95,7 +95,7 @@
                     phone: '',
                     bank: '',
                     card: '',
-                    idcard: '',
+                    idCard: '',
                     pay: 0.0,
                     token: localStorage.getItem('company_token')
                 },
@@ -112,7 +112,7 @@
                     card: [
                         {required: true, message: '请填写银行卡'}
                     ],
-                    idcard: [
+                    idCard: [
                         {required: true, message: '请填写身份证'}
                     ],
                 },
@@ -137,7 +137,7 @@
                     this.ruleForm.phone = response.data.phone;
                     this.ruleForm.bank = response.data.bank;
                     this.ruleForm.card = response.data.card;
-                    this.ruleForm.idcard = response.data.idcard;
+                    this.ruleForm.idCard = response.data.idCard;
                     this.ruleForm.money = response.data.money;
                     this.ruleForm.pay = response.data.pay;
                 });

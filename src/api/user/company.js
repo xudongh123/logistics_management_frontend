@@ -1,10 +1,10 @@
 import fetch from '@/api/fetch';
 
-export function CompanyLogin(params) {
+export function CompanyLogin(data) {
     return fetch({
         url: '/v1/user/company/loginex',
         method: 'post',
-        params
+        data
     });
 }
 

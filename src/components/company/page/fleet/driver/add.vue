@@ -31,7 +31,7 @@
                 <el-row>
                     <el-col :span="8">
                         <el-form-item label="任务短信通知">
-                            <el-switch v-model="ruleForm.is_sms" on-text="是" off-text="否"/>
+                            <el-switch v-model="ruleForm.isSms" on-text="是" off-text="否"/>
                         </el-form-item>
                     </el-col>
                     <el-col :span="8">
@@ -46,12 +46,12 @@
                 <el-row>
                     <el-col :span="8">
                         <el-form-item label="银行卡号">
-                            <el-input v-model="ruleForm.bank_number" placeholder="确认银行卡号码"></el-input>
+                            <el-input v-model="ruleForm.bankNumber" placeholder="确认银行卡号码"></el-input>
                         </el-form-item>
                     </el-col>
                     <el-col :span="8" >
                         <el-form-item label="开户行">
-                            <el-input v-model="ruleForm.bank_addr"></el-input>
+                            <el-input v-model="ruleForm.bankAddr"></el-input>
                         </el-form-item>
                     </el-col>
                 </el-row>
@@ -71,7 +71,7 @@
                 <el-row>
                     <el-col :span="12">
                         <el-form-item label="身份证">
-                            <el-input v-model="ruleForm.idcard"></el-input>
+                            <el-input v-model="ruleForm.idCard"></el-input>
                         </el-form-item>
                     </el-col>
                 </el-row>
@@ -83,7 +83,7 @@
                     </el-col>
                 </el-row>
 
-                <el-row style="margin: 30px">
+                <!-- <el-row style="margin: 30px">
                     <el-col :span="20">
                         <el-card v-if="ruleForm.driver_license_visible">
                             <div slot="header">
@@ -252,7 +252,7 @@
                             </el-card>
                         </el-row>
                     </el-col>
-                </el-row>
+                </el-row> -->
 
                 <el-form-item>
                     <!-- <el-button @click="addDriverLicense" v-if="!ruleForm.driver_license_visible" icon="plus"  type="info">增加驾驶证</el-button>
@@ -281,17 +281,17 @@
                     name: '',
                     sex: '男',
                     phone: '',
-                    password: '123456',
-                    bank_addr: '',
-                    bank_number: '',
-                    is_sms: false,
-                    idcard: '',
+                    //password: '123456',
+                    bankAddr: '',
+                    bankNumber: '',
+                    isSms: false,
+                    idCard: '',
                     email: '',
                     hometown: '',
                     remark: '',
-                    driver_license_visible:false,
-                    driver_license: null,
-                    other_license:[],
+                    // driver_license_visible:false,
+                    // driver_license: null,
+                    //other_license:[],
                     token: localStorage.getItem('company_token')
                 },
                 bank_list: [],
@@ -304,17 +304,17 @@
                         {required: true, message: '请填写手机号码'},
                         {min: 11,max: 11, message: '手机号码长度为11位'}
                     ],
-                    password: [
-                        {required: true, message: '请填写密码'},
-                        {min: 6, message: '密码长度不能小于6位'}
-                    ],
+                    // password: [
+                    //     {required: true, message: '请填写密码'},
+                    //     {min: 6, message: '密码长度不能小于6位'}
+                    // ],
                     sex: [
                         {required: true, message: '请选择性别'}
                     ],
                 },
                 listLoading: false,
-                driver_level:null,
-                driver_license_type:null,
+                // driver_level:null,
+                // driver_license_type:null,
                 uploadToken: {
                     token:''
                 },
@@ -335,44 +335,44 @@
                 // getDefindAll({type_code:'driver_license_type'}).then(response => {
                 //     this.driver_license_type = response.data;
                 // });
-                getUploadToken().then(response => {
-                    this.uploadToken.token = response.data;
-                });
+                // getUploadToken().then(response => {
+                //     this.uploadToken.token = response.data;
+                // });
             },
-            removeLicense(item) {
-                var index = this.ruleForm.other_license.indexOf(item)
-                if (index !== -1) {
-                    this.ruleForm.other_license.splice(index, 1)
-                }
-            },
-            addDriverLicense(){
-                this.ruleForm.driver_license_visible = true;
-                this.ruleForm.driver_license = {
-                    number: '',
-                    level: '',
-                    valid_time: null,
-                    pass_time: null,
-                    unvalid_time: null,
-                    work_license: '',
-                    ic_number: '',
-                    files: []
-                }
-            },
-            removeDriverLicense(){
-                this.ruleForm.driver_license_visible = false;
-                this.ruleForm.driver_license = null;
-            },
-            addLicense() {
-                this.ruleForm.other_license.push({
-                    number: '',
-                    type: '',
-                    pass_time: null,
-                    valid_date: null,
-                    unvalide_date: null,
-                    files: [],
-                    remark: ''
-                });
-            },
+            // removeLicense(item) {
+            //     var index = this.ruleForm.other_license.indexOf(item)
+            //     if (index !== -1) {
+            //         this.ruleForm.other_license.splice(index, 1)
+            //     }
+            // },
+            // addDriverLicense(){
+            //     this.ruleForm.driver_license_visible = true;
+            //     this.ruleForm.driver_license = {
+            //         number: '',
+            //         level: '',
+            //         valid_time: null,
+            //         pass_time: null,
+            //         unvalid_time: null,
+            //         work_license: '',
+            //         ic_number: '',
+            //         files: []
+            //     }
+            // },
+            // removeDriverLicense(){
+            //     this.ruleForm.driver_license_visible = false;
+            //     this.ruleForm.driver_license = null;
+            // },
+            // addLicense() {
+            //     this.ruleForm.other_license.push({
+            //         number: '',
+            //         type: '',
+            //         pass_time: null,
+            //         valid_date: null,
+            //         unvalide_date: null,
+            //         files: [],
+            //         remark: ''
+            //     });
+            // },
             submitForm(formName) {
                 this.$refs[formName].validate((valid) => {
                     if (valid) {

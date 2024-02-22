@@ -14,10 +14,10 @@
                                 <el-tag type="primary" >{{scope.row.fleetDriver.sex}}</el-tag>
                             </template>
                         </el-table-column>
-                        <el-table-column prop="fleetDriver.is_sms" label="是否短信通知" width="120">
+                        <el-table-column prop="fleetDriver.isSms" label="是否短信通知" width="120">
                             <template scope="scope">
-                                <el-tag type="success" v-if="scope.row.fleetDriver.is_sms">是</el-tag>
-                                <el-tag type="primary" v-if="!scope.row.fleetDriver.is_sms">否</el-tag>
+                                <el-tag type="success" v-if="scope.row.fleetDriver.isSms">是</el-tag>
+                                <el-tag type="primary" v-if="!scope.row.fleetDriver.isSms">否</el-tag>
                             </template>
                         </el-table-column>
                         <el-table-column

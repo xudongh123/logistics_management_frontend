@@ -19,59 +19,59 @@
                         <el-form label-position="left" class="demo-table-expand">
                             <el-col :span="10">
                                 <el-form-item label="姓名">
-                                    <span>{{ props.row.fleetDriver.name }}</span>
+                                    <span>{{ props.row.name }}</span>
                                 </el-form-item>
                                 <el-form-item label="电话">
-                                    <span>{{ props.row.fleetDriver.phone }}</span>
+                                    <span>{{ props.row.phone }}</span>
                                 </el-form-item>
                                 <el-form-item label="性别">
-                                    <span>{{ props.row.fleetDriver.sex }}</span>
+                                    <span>{{ props.row.sex }}</span>
                                 </el-form-item>
                                 <el-form-item label="是否短信通知">
-                                    <span>{{ props.row.fleetDriver.is_sms }}</span>
+                                    <span>{{ props.row.isSms }}</span>
                                 </el-form-item>
                                 <el-form-item label="银行卡号">
-                                    <span>{{ props.row.fleetDriver.bank_number }}</span>
+                                    <span>{{ props.row.bankNumber }}</span>
                                 </el-form-item>
                                 <el-form-item label="开户行地址">
-                                    <span>{{ props.row.fleetDriver.bank_addr }}</span>
+                                    <span>{{ props.row.bankAddr }}</span>
                                 </el-form-item>
                             </el-col>
                             <el-col :span="10">
                                 <el-form-item label="创建时间">
-                                    <span>{{ props.row.fleetDriver.time | time }}</span>
+                                    <span>{{ props.row.time | time }}</span>
                                 </el-form-item>
                                 <el-form-item label="身份证号码">
-                                    <span>{{ props.row.fleetDriver.idcard }}</span>
+                                    <span>{{ props.row.idCard }}</span>
                                 </el-form-item>
                                 <el-form-item label="邮箱">
-                                    <span>{{ props.row.fleetDriver.email }}</span>
+                                    <span>{{ props.row.email }}</span>
                                 </el-form-item>
                                 <el-form-item label="籍贯">
-                                    <span>{{ props.row.fleetDriver.hometown }}</span>
+                                    <span>{{ props.row.hometown }}</span>
                                 </el-form-item>
                             </el-col>
                         </el-form>
                     </template>
                 </el-table-column>
-                <el-table-column prop="fleetDriver.name" label="姓名"/>
-                <el-table-column prop="fleetDriver.phone" label="手机号"/>
+                <el-table-column prop="name" label="姓名"/>
+                <el-table-column prop="phone" label="手机号"/>
                 <el-table-column
                     label="性别">
                     <template scope="scope">
-                        <el-tag type="primary" >{{scope.row.fleetDriver.sex}}</el-tag>
+                        <el-tag type="primary" >{{scope.row.sex}}</el-tag>
                     </template>
                 </el-table-column>
-                <el-table-column prop="driver.is_sms" label="是否短信通知">
+                <el-table-column prop="driver.isSms" label="是否短信通知">
                     <template scope="scope">
-                        <el-tag type="success" v-if="scope.row.fleetDriver.is_sms">是</el-tag>
-                        <el-tag type="primary" v-if="!scope.row.fleetDriver.is_sms">否</el-tag>
+                        <el-tag type="success" v-if="scope.row.isSms">是</el-tag>
+                        <el-tag type="primary" v-if="!scope.row.isSms">否</el-tag>
                     </template>
                 </el-table-column>
                 <el-table-column
                     label="添加时间">
                     <template scope="scope">
-                        <p>{{scope.row.fleetDriver.time | time}}</p>
+                        <p>{{scope.row.time | time}}</p>
                     </template>
                 </el-table-column>
 
@@ -81,7 +81,7 @@
                             <el-button-group>
                                 <!--<el-button type="primary" icon="edit" size="small">编辑</el-button>-->
                                 <!--<el-button type="warning" icon="setting" size="small">重置密码</el-button>-->
-                                <el-button type="danger" @click="deleteData(scope.row.fleetDriver.id)" icon="delete" size="small">删除</el-button>
+                                <el-button type="danger" @click="deleteData(scope.row.id)" icon="delete" size="small">删除</el-button>
                             </el-button-group>
                     </template>
                 </el-table-column>
@@ -126,6 +126,7 @@
                 this.listLoading = true;
                 getDriverListEx(this.listQuery).then(response => {
                     this.list = response.data.item;
+                    console.log(`list: ${JSON.stringify(this.list)}`)
                     this.total = response.data.total;
                     this.listLoading = false;
                 });

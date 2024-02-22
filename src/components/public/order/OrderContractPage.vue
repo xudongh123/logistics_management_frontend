@@ -100,7 +100,7 @@
                                 widths: [100, '*'],
                                 body: [
                                     ['户名', order.orderContract.bbank_name],
-                                    ['账号', order.orderContract.bbank_number],
+                                    ['账号', order.orderContract.bbankNumber],
                                     ['开户行', order.orderContract.bbank],
                                 ]
                             }

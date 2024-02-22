@@ -25,13 +25,13 @@
                     <p>{{rechargeForm.bank_name}}</p>
                 </el-form-item>
                 <el-form-item label="收款账号:">
-                    <p>{{rechargeForm.bank_number}}</p>
+                    <p>{{rechargeForm.bankNumber}}</p>
                 </el-form-item>
                 <el-form-item label="收款银行:">
                     <p>{{rechargeForm.bank}}</p>
                 </el-form-item>
                 <el-form-item label="收款行点:">
-                    <p>{{rechargeForm.bank_addr}}</p>
+                    <p>{{rechargeForm.bankAddr}}</p>
                 </el-form-item>
                 <el-form-item label="金额:">
                     <p style="font-size: 20px; color:red">{{rechargeForm.money}}</p>
@@ -67,9 +67,9 @@
                     fk_user_id: '',
                     company_out: '',
                     bank_name: '',
-                    bank_number: '',
+                    bankNumber: '',
                     bank: '',
-                    bank_addr: '',
+                    bankAddr: '',
                     money: 0,
                     money_code: '',
                     money_for: ''
