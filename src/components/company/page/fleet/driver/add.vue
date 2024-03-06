@@ -292,7 +292,7 @@
                     // driver_license_visible:false,
                     // driver_license: null,
                     //other_license:[],
-                    token: localStorage.getItem('company_token')
+                    token: localStorage.getItem('companyToken')
                 },
                 bank_list: [],
                 rules: {

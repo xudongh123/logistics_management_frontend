@@ -88,7 +88,7 @@
             return {
                 Loading: false,
                 LoadingParam:{
-                    token: localStorage.getItem('company_token')
+                    token: localStorage.getItem('companyToken')
                 },
                 // uploadToken: {
                 //     token:''
@@ -110,7 +110,7 @@
                     sex: '',
                 },
                 passwordForm:{
-                    token: localStorage.getItem('company_token'),
+                    token: localStorage.getItem('companyToken'),
                     oldPassword:'',
                     newPassword:'',
                 },
@@ -135,7 +135,7 @@
                 getInfo(this.LoadingParam).then(response => {
                    //this.userInfoForm = response.data.userInfo;
                     this.userForm = response.data;
-                    this.userForm.token = localStorage.getItem('company_token');
+                    this.userForm.token = localStorage.getItem('companyToken');
                     // if(this.userInfoForm.birthday != null)
                     //     this.userInfoForm.birthday = parseTime(this.userInfoForm.birthday,"{y}/{m}/{d}");
                     this.Loading = false;

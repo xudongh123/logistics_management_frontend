@@ -93,3 +93,11 @@ export function deleteCustomer(id) {
         method: 'delete'
     });
 }
+
+export function login(data) {
+    return fetch({
+        url: '/v1/user/company/loginex',
+        method: 'post',
+        data
+    });
+}

@@ -97,7 +97,7 @@
                     card: '',
                     idCard: '',
                     pay: 0.0,
-                    token: localStorage.getItem('company_token')
+                    token: localStorage.getItem('companyToken')
                 },
                 rules: {
                     name: [
@@ -132,7 +132,7 @@
                 // getDefindAll({type_code:'bank_list'}).then(response => {
                 //     this.bank_list = response.data;
                 // });
-                // getPayCard(this.$route.query.id,{token:localStorage.getItem('company_token')}).then(response => {
+                // getPayCard(this.$route.query.id,{token:localStorage.getItem('companyToken')}).then(response => {
                 //     this.ruleForm.name = response.data.name;
                 //     this.ruleForm.phone = response.data.phone;
                 //     this.ruleForm.bank = response.data.bank;

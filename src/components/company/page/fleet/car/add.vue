@@ -352,7 +352,7 @@
                     //insuranceCompany: '',
                     //insuranceTime: null,
                     remark: '',
-                    token: localStorage.getItem('company_token')
+                    token: localStorage.getItem('companyToken')
                 },
                 rules: {
                     plate: [
@@ -375,7 +375,7 @@
                     token:''
                 },
                 license_img_click: 0,
-                mtoken:localStorage.getItem('company_token')
+                mtoken:localStorage.getItem('companyToken')
 
             };
         },

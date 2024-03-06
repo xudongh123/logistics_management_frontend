@@ -59,7 +59,7 @@
                 total: 0,
                 listLoading: true,
                 listQuery:{
-                    token: localStorage.getItem('company_token'),
+                    token: localStorage.getItem('companyToken'),
                     offset: 0,
                     pageSize: 10
                 }

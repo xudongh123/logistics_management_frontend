@@ -114,7 +114,7 @@
                 listQuery:{
                     offset: 0,
                     pageSize: 10,
-                    token: localStorage.getItem('company_token')
+                    token: localStorage.getItem('companyToken')
                 }
             }
         },

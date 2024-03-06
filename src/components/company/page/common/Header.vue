@@ -20,10 +20,10 @@
         data() {
             return {
                 name: '未命名',
-                nickname: localStorage.getItem('company_username'),
+                nickname: localStorage.getItem('username'),
                 img: '',
                 loadingParam: {
-                    token: localStorage.getItem('company_token')
+                    token: localStorage.getItem('companyToken')
                 }
             }
         },
@@ -38,8 +38,8 @@
         methods:{
             handleCommand(command) {
                 if(command == 'loginout'){
-                    localStorage.removeItem('company_username')
-                    localStorage.removeItem('company_token')
+                    localStorage.removeItem('username')
+                    localStorage.removeItem('companyToken')
                     localStorage.removeItem('type')
                     this.$router.push('/login');
                 }
