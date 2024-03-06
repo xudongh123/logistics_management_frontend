@@ -87,7 +87,7 @@
     </el-row>
 </template>
 <script>
-    import { addDriverEx } from '@/api/driver';
+    import { addDriver } from '@/api/driver';
 
     export default {
         data() {
@@ -129,7 +129,7 @@
                 this.$refs[formName].validate((valid) => {
                     if (valid) {
                         this.listLoading = true;
-                        addDriverEx(this.ruleForm).then(response => {
+                        addDriver(this.ruleForm).then(response => {
                             this.listLoading = false;
                             this.$message({
                                 type: 'success',

@@ -8,17 +8,17 @@ export function getDriverList(params) {
     });
 }
 
-export function addDriver(params) {
+export function addDriver(data) {
     return fetch({
         url: "/driver/add",
         method: "post",
-        params,
+        data,
     });
 }
 
 export function deleteDriver(id) {
     return fetch({
-        url: "/driver/delete" + id,
+        url: "/driver/delete/" + id,
         method: "delete",
     });
 }

@@ -49,8 +49,6 @@
                     <el-button type="primary" @click="submitForm('ruleForm')">立即创建</el-button>
                     <el-button @click="resetForm('ruleForm')">重置</el-button>
                 </el-form-item>
-
-                <!-- <my-driver-choise @onselect="onSelectDriverSubmit" :mtoken="mtoken" ref="myDriverChoise"></my-driver-choise> -->
             </el-form>
         </el-col>
 
@@ -60,9 +58,6 @@
     import { addUser } from '@/api/user';
 
     export default {
-        components: {
-            MyDriverChoise
-        },
         data() {
             return {
                 ruleForm: {
@@ -117,19 +112,7 @@
             },
             resetForm(formName) {
                 this.$refs[formName].resetFields();
-            },
-            // onSelectDriver(){
-            //     this.$refs.myDriverChoise.show();
-            // },
-            // onSelectDriverSubmit(row){
-            //     this.ruleForm.driver_name = row.fleetDriver.name;
-            //     this.ruleForm.driver_phone = row.fleetDriver.phone;
-            // },
-            // day(val){
-            //     if(val == null)
-            //         return null;
-            //     return parseTime(val,"{y}/{m}/{d}");
-            // }
+            }
         },
         filters: {
             // day: function (value) {
