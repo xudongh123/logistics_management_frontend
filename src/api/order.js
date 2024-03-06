@@ -1,24 +1,8 @@
 import fetch from '@/api/fetch';
 
-export function getOrderListAll(params) {
-  return fetch({
-    url: '/v1/order/page/all',
-    method: 'get',
-    params
-  });
-}
-
 export function getOrderList(params) {
     return fetch({
-        url: '/v1/order/page',
-        method: 'get',
-        params
-    });
-}
-
-export function getOrderListByCustomer(params) {
-    return fetch({
-        url: '/v1/order/page/customer',
+        url: '/order/list',
         method: 'get',
         params
     });
@@ -26,7 +10,7 @@ export function getOrderListByCustomer(params) {
 
 export function getOrder(id) {
     return fetch({
-        url: '/v1/order/'+id,
+        url: '/order/'+id,
         method: 'get'
     });
 }
@@ -38,54 +22,51 @@ export function deleteOrder(id) {
     });
 }
 
-
-export function addCustomerOrder(params) {
+export function takingOrder(data) {
     return fetch({
-        url: '/v1/order/customer',
-        method: 'post',
-        params
+        url: "/order/taking",
+        method: "post",
+        data,
     });
 }
 
-export function deleteCustomerOrder(id){
+export function refuseOrder(data) {
     return fetch({
-        url: '/v1/order/customer/'+id,
-        method: 'delete',
+        url: "/order/refuse",
+        method: "post",
+        data,
     });
 }
 
-//订单处理
-export function addTakingOrder(params) {
+export function addOrder(data) {
     return fetch({
-        url: '/v1/order/taking',
-        method: 'post',
-        params
-    });
-}
-
-export function refuseCustomerOrder(data) {
-    return fetch({
-        url: '/v1/order/customer/refuse',
+        url: '/order/add',
         method: 'post',
         data
     });
 }
-
 
 //订单签收
 export function addSignOrder(data) {
     return fetch({
-        url: '/v1/order/sign',
+        url: '/order/sign',
         method: 'post',
         data
     });
 }
 
-//修改合同
-export function editContractOrder(id,params) {
+export function getOrderCount(params) {
     return fetch({
-        url: '/v1/order/contract/'+id,
-        method: 'put',
+        url: '/order/count',
+        method: 'get',
+        params
+    });
+}
+
+export function getOrderCount7Day(params) {
+    return fetch({
+        url: '/order/count/7day',
+        method: 'get',
         params
     });
 }

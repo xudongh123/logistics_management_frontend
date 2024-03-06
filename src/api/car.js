@@ -2,15 +2,7 @@ import fetch from '@/api/fetch';
 
 export function getCarList(params) {
     return fetch({
-        url: '/v1/fleet/car/page',
-        method: 'get',
-        params
-    });
-}
-
-export function getCarListEx(params) {
-    return fetch({
-        url: '/v1/fleet/car/ex/page',
+        url: '/car/list',
         method: 'get',
         params
     });
@@ -18,7 +10,7 @@ export function getCarListEx(params) {
 
 export function addCar(data) {
     return fetch({
-        url: '/v1/fleet/car',
+        url: '/car/add',
         method: 'post',
         data
     });
@@ -26,7 +18,7 @@ export function addCar(data) {
 
 export function deleteCar(id) {
     return fetch({
-        url: '/v1/fleet/car/'+id,
+        url: '/car/delete/'+id,
         method: 'delete'
     });
 }

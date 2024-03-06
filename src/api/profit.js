@@ -2,15 +2,7 @@ import fetch from '@/api/fetch';
 
 export function getProfitList(params) {
     return fetch({
-        url: '/v1/profit/page',
-        method: 'get',
-        params
-    });
-}
-
-export function getProfit(id,params) {
-    return fetch({
-        url: '/v1/profit/' + id,
+        url: '/profit/list',
         method: 'get',
         params
     });
@@ -18,7 +10,7 @@ export function getProfit(id,params) {
 
 export function addReceive(id, data) {
     return fetch({
-        url: '/v1/profit/receive/' + id,
+        url: '/profit/receive/' + id,
         method: 'post',
         data
     });

@@ -62,7 +62,7 @@
                                     localStorage.setItem('token', response.data.token);
                                     localStorage.setItem('permissionLevel', response.data.permissionLevel);
                                     //localStorage.setItem('type', 'company');
-                                    this.$router.push('/company/home');
+                                    this.$router.push('/home');
                                 },
                                 error => {
                                     this.listLoading = false;
