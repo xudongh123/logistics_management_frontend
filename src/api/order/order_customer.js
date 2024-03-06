@@ -1,10 +1,10 @@
 import fetch from '@/api/fetch';
 
-export function addCustomerOrder(params) {
+export function addCustomerOrder(data) {
     return fetch({
         url: '/v1/order/customer',
         method: 'post',
-        params
+        data
     });
 }
 

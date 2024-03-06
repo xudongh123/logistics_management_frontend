@@ -66,8 +66,8 @@
                                 widths: [40, 40, 40, 70],
                                 body: [
                                     [{text:'订单号',style:'table'}, {text:order.order.order_number,style:'number',colSpan: 3},{},{}],
-                                    [{text:'收货人',style:'table'}, {text:order.orderCustomer.recive_name,style:'table'},{text:'电话',style:'table'},{text:order.orderCustomer.recive_phone,style:'table'}],
-                                    [{text:'地址',style:'table'}, {text:order.orderCustomer.recive_addr + ' ' + order.orderCustomer.recive_addr_info,style:'address',colSpan: 3},{},{}],
+                                    [{text:'收货人',style:'table'}, {text:order.orderCustomer.receive_name,style:'table'},{text:'电话',style:'table'},{text:order.orderCustomer.receive_phone,style:'table'}],
+                                    [{text:'地址',style:'table'}, {text:order.orderCustomer.receive_addr + ' ' + order.orderCustomer.receive_addr_info,style:'address',colSpan: 3},{},{}],
                                     [{text:'发货人',style:'table'}, {text:order.orderCustomer.send_name,style:'table'},{text:'电话',style:'table'},{text:order.orderCustomer.send_phone,style:'table'}],
                                     [{text:'地址',style:'table'}, {text:order.orderCustomer.send_addr + ' ' + order.orderCustomer.send_addr_info,style:'address',colSpan: 3},{},{}],
                                     [{text:'货物名称',style:'table',colSpan: 2},{}, {text:this.getGoods(order),style:'table',colSpan: 2},{}],

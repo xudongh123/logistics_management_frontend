@@ -1,18 +1,18 @@
-import fetch from '@/api/fetch';
+import fetch from "@/api/fetch";
 
 //订单处理
-export function addTakingOrder(params) {
+export function addTakingOrder(data) {
     return fetch({
-        url: '/v1/order/taking',
-        method: 'post',
-        params
+        url: "/v1/order/taking",
+        method: "post",
+        data,
     });
 }
 
-export function refuseCustomerOrder(params) {
+export function refuseCustomerOrder(data) {
     return fetch({
-        url: '/v1/order/customer/refuse',
-        method: 'post',
-        params
+        url: "/v1/order/customer/refuse",
+        method: "post",
+        data,
     });
 }

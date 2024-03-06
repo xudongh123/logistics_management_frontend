@@ -5,11 +5,6 @@
             <span class="white-text">管理系统</span>
         </div>
         <div class="ms-login"  v-loading.body="listLoading" element-loading-text="正在登录中">
-
-            <template>
-                <el-radio class="radio" v-model="type" label="company">用户</el-radio>
-                <el-radio class="radio" v-model="type" style="float:right" label="admin">管理员</el-radio>
-            </template>
             <el-form :model="ruleForm" :rules="rules" ref="ruleForm" label-width="px" class="demo-ruleForm" style="margin-top: 30px">
                 <el-form-item prop="username">
                     <el-input class="custom-input" v-model="ruleForm.username" placeholder="请输入用户名"></el-input>

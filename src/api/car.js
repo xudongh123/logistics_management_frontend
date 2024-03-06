@@ -16,11 +16,11 @@ export function getCarListEx(params) {
     });
 }
 
-export function addCar(params) {
+export function addCar(data) {
     return fetch({
         url: '/v1/fleet/car',
         method: 'post',
-        params
+        data
     });
 }
 

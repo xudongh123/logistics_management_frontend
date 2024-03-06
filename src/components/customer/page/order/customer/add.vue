@@ -38,26 +38,26 @@
 
                         <el-row>
                             <el-col :span="8">
-                                <el-form-item label="收件人姓名" prop="recive_name">
-                                    <el-input v-model="ruleForm.recive_name"></el-input>
+                                <el-form-item label="收件人姓名" prop="receive_name">
+                                    <el-input v-model="ruleForm.receive_name"></el-input>
                                 </el-form-item>
                             </el-col>
                             <el-col :span="8">
-                                <el-form-item label="收件人手机号" prop="recive_phone">
-                                    <el-input v-model="ruleForm.recive_phone"></el-input>
+                                <el-form-item label="收件人手机号" prop="receive_phone">
+                                    <el-input v-model="ruleForm.receive_phone"></el-input>
                                 </el-form-item>
                             </el-col>
                         </el-row>
                         <el-row>
                             <el-col :span="8">
-                                <el-form-item label="收件人地址" prop="recive_addr_ex">
-                                    <el-cascader :options="options" v-model="ruleForm.recive_addr_ex"
+                                <el-form-item label="收件人地址" prop="receive_addr_ex">
+                                    <el-cascader :options="options" v-model="ruleForm.receive_addr_ex"
                                                  style="width: 100%;"></el-cascader>
                                 </el-form-item>
                             </el-col>
                             <el-col :span="12">
-                                <el-form-item label="收件人详细地址" prop="recive_addr_info">
-                                    <el-input type="textarea" v-model="ruleForm.recive_addr_info" @blur="initMap"></el-input>
+                                <el-form-item label="收件人详细地址" prop="receive_addr_info">
+                                    <el-input type="textarea" v-model="ruleForm.receive_addr_info" @blur="initMap"></el-input>
                                 </el-form-item>
                             </el-col>
                         </el-row>
@@ -80,8 +80,8 @@
                                 </el-form-item>
                             </el-col>
                             <el-col :span="8">
-                                <el-form-item label="限时到达日期" prop="recive_time_ex">
-                                    <el-date-picker type="date" placeholder="选择日期" v-model="ruleForm.recive_time_ex" format="yyyy年MM月dd日" :editable="false"
+                                <el-form-item label="限时到达日期" prop="receive_time_ex">
+                                    <el-date-picker type="date" placeholder="选择日期" v-model="ruleForm.receive_time_ex" format="yyyy年MM月dd日" :editable="false"
                                                     style="width: 100%;"></el-date-picker>
                                 </el-form-item>
                             </el-col>
@@ -233,16 +233,16 @@
                     send_addr: '',
                     send_addr_ex: [],
                     send_addr_info: '',
-                    recive_name: '',
-                    recive_phone: '',
-                    recive_addr: '',
-                    recive_addr_ex: [],
-                    recive_addr_info: '',
+                    receive_name: '',
+                    receive_phone: '',
+                    receive_addr: '',
+                    receive_addr_ex: [],
+                    receive_addr_info: '',
                     dispatching_type: '',
                     send_time_ex: null,
-                    recive_time_ex: null,
+                    receive_time_ex: null,
                     send_time: '',
-                    recive_time: '',
+                    receive_time: '',
                     goods: [],
                     is_company:false,
                     fk_want_company_id:null,
@@ -265,20 +265,20 @@
                     send_addr_info: [
                         {required: true, message: '请输入详细地址'}
                     ],
-                    recive_name: [
+                    receive_name: [
                         {required: true, message: '请输姓名'},
                         {min: 2, max: 5, message: '长度在 2 到 5 个字符'}
                     ],
-                    recive_phone: [
+                    receive_phone: [
                         {required: true, message: '请填写手机号码'}
                     ],
-                    recive_time_ex: [
+                    receive_time_ex: [
                         {type: 'date', required: true, message: '请选择日期'}
                     ],
-                    recive_addr_ex: [
+                    receive_addr_ex: [
                         {required: true, message: '请输入地址'}
                     ],
-                    recive_addr_info: [
+                    receive_addr_info: [
                         {required: true, message: '请输入详细地址'}
                     ],
                     dispatching_type:[
@@ -379,34 +379,34 @@
             },
             submitConfig(){
                 //地址转换
-                this.ruleForm.recive_addr = '';
+                this.ruleForm.receive_addr = '';
                 this.ruleForm.send_addr = '';
                 for(var i=0; i<3; i++){
-                    this.ruleForm.recive_addr += CodeToText[this.ruleForm.recive_addr_ex[i]];
+                    this.ruleForm.receive_addr += CodeToText[this.ruleForm.receive_addr_ex[i]];
                     this.ruleForm.send_addr += CodeToText[this.ruleForm.send_addr_ex[i]];
                     if(i!=2){
                         this.ruleForm.send_addr +='/';
-                        this.ruleForm.recive_addr +='/';
+                        this.ruleForm.receive_addr +='/';
                     }
                 }
                 //时间转换
                 this.ruleForm.send_time = parseTime(this.ruleForm.send_time_ex,"{y}/{m}/{d}");
-                this.ruleForm.recive_time = parseTime(this.ruleForm.recive_time_ex,"{y}/{m}/{d}");
+                this.ruleForm.receive_time = parseTime(this.ruleForm.receive_time_ex,"{y}/{m}/{d}");
             },
             //地图回执路线
             initMap(){
                 //地址转换
-                var map_recive_addr = "";
+                var map_receive_addr = "";
                 var map_send_addr = "";
                 for(var i=0; i<3; i++){
-                    if(this.ruleForm.recive_addr_ex[i] == null)
+                    if(this.ruleForm.receive_addr_ex[i] == null)
                         return;
-                    map_recive_addr += CodeToText[this.ruleForm.recive_addr_ex[i]];
+                    map_receive_addr += CodeToText[this.ruleForm.receive_addr_ex[i]];
                     map_send_addr += CodeToText[this.ruleForm.send_addr_ex[i]];
                 }
-                map_recive_addr += this.ruleForm.recive_addr_info;
+                map_receive_addr += this.ruleForm.receive_addr_info;
                 map_send_addr += this.ruleForm.send_addr_info;
-                map_recive_addr = map_recive_addr.replace("市辖区","");
+                map_receive_addr = map_receive_addr.replace("市辖区","");
                 map_send_addr = map_send_addr.replace("市辖区","");
 
                 var map = this.amapManager.getMap();
@@ -417,7 +417,7 @@
                     var driving = new AMap.Driving({
                         map: map,
                     });
-                    driving.search([{keyword:map_send_addr},{keyword:map_recive_addr}], function(status, result){
+                    driving.search([{keyword:map_send_addr},{keyword:map_receive_addr}], function(status, result){
                         if(status === 'complete' && result.info === 'OK') {
                             _this.map.result = true;
                             _this.map.info_text = "路线规划成功";

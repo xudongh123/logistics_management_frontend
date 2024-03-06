@@ -48,7 +48,7 @@
                 bodyarry.push([{
                         columns:[
                             {text:'始发站：'+order.orderCustomer.send_addr,style:'table'},
-                            {text:'目的站：'+order.orderCustomer.recive_addr,style:'table'},
+                            {text:'目的站：'+order.orderCustomer.receive_addr,style:'table'},
                         ],
                         colSpan: 11
                     },{},{},{},{},{},{},{},{},{},{}]
@@ -81,16 +81,16 @@
                                 {
                                     columns:[
                                         [
-                                            {text:'收货人：'+order.orderCustomer.recive_name,style:'table'},
+                                            {text:'收货人：'+order.orderCustomer.receive_name,style:'table'},
                                             {text:'电话：',style:'table'},
                                         ],
                                         [
                                             {text:'单位',style:'table'},
-                                            {text:'手机'+order.orderCustomer.recive_phone,style:'table'},
+                                            {text:'手机'+order.orderCustomer.receive_phone,style:'table'},
                                         ]
                                     ]
                                 },
-                                {text:'地址：'+order.orderCustomer.recive_addr + ' ' + order.orderCustomer.recive_addr_info,style:'table'},
+                                {text:'地址：'+order.orderCustomer.receive_addr + ' ' + order.orderCustomer.receive_addr_info,style:'table'},
                             ],
                         ],
                         colSpan: 5},
@@ -156,8 +156,8 @@
                     {text:'',style:'table',colSpan: 3},
                     {},
                     {},
-                    {text:order.orderTaking.recive,style:'table'},
-                    {text:'大写：\t'+ this.DX(order.orderTaking.recive),style:'table',colSpan: 4},
+                    {text:order.orderTaking.receive,style:'table'},
+                    {text:'大写：\t'+ this.DX(order.orderTaking.receive),style:'table',colSpan: 4},
                     {},
                     {},
                     {},]);
@@ -176,11 +176,11 @@
                                     columns:[
                                         [
                                             {text:'填开人：',style:'table'},
-                                            {text:'收货人：'+order.orderCustomer.recive_name,style:'table'},
+                                            {text:'收货人：'+order.orderCustomer.receive_name,style:'table'},
                                         ],
                                         [
                                             {text:'填开时间：',style:'table'},
-                                            {text:'收货时间：'+this.day(order.orderCustomer.recive_time),style:'table'},
+                                            {text:'收货时间：'+this.day(order.orderCustomer.receive_time),style:'table'},
                                         ]
                                     ]
                                 },

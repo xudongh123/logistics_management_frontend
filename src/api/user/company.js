@@ -16,11 +16,11 @@ export function getInfo(params) {
     });
 }
 
-export function updateInfo(params) {
+export function updateInfo(data) {
     return fetch({
         url: '/v1/user/company/info',
-        method: 'put',
-        params
+        method: 'post',
+        data
     });
 }
 

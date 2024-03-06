@@ -16,18 +16,18 @@ export function getProfit(id,params) {
     });
 }
 
-export function addRecive(id,params) {
+export function addReceive(id, data) {
     return fetch({
-        url: '/v1/profit/recive/' + id,
-        method: 'put',
-        params
+        url: '/v1/profit/receive/' + id,
+        method: 'post',
+        data
     });
 }
-export function addPay(id,params) {
+export function addPay(id, data) {
     return fetch({
         url: '/v1/profit/pay/' + id,
-        method: 'put',
-        params
+        method: 'post',
+        data
     });
 }
 

@@ -41,6 +41,7 @@
             fetchData() {
                 this.listLoading = true;
                 getOrder(this.order_id).then(response => {
+                    debugger
                     this.order = response.data;
                     this.pdfInit(this.order);
                     this.listLoading = false;
@@ -75,8 +76,8 @@
                     bodyarry.push([
                         {text:(index+1)+'、',style:'table'},
                         {text:'',style:'table'},
-                        {text:order.orderCustomer.recive_addr + " " + order.orderCustomer.recive_addr_info,style:'table'},
-                        {text:order.orderCustomer.recive_phone,style:'table'},
+                        {text:order.orderCustomer.receive_addr + " " + order.orderCustomer.receive_addr_info,style:'table'},
+                        {text:order.orderCustomer.receive_phone,style:'table'},
                         {text:order.order.order_number,style:'table'},
                         {text:value.name,style:'table'},
                         {text:value.number,style:'table'},

@@ -49,7 +49,7 @@
                     {},
                     {text:order.orderCustomer.send_addr,style:'body'},
                     {},
-                    {text:order.orderCustomer.recive_addr,style:'body'},
+                    {text:order.orderCustomer.receive_addr,style:'body'},
                     {}, {}, {}, {},
                 ]);
                 return bodyarry;
@@ -61,7 +61,7 @@
                     {},
                     {text:order.orderCustomer.send_name,style:'body'},
                     {}, {}, {},
-                    {text:order.orderCustomer.recive_name,style:'body'},
+                    {text:order.orderCustomer.receive_name,style:'body'},
                     {}, {},
                 ]);
 
@@ -69,14 +69,14 @@
                     {}, {}, {},
                     {text:order.orderCustomer.send_phone,style:'body'},
                     {}, {}, {},
-                    {text:order.orderCustomer.recive_phone,style:'body'},
+                    {text:order.orderCustomer.receive_phone,style:'body'},
                 ]);
 
                 bodyarry.push([
                     {},
                     {text:order.orderCustomer.send_addr + ' ' + order.orderCustomer.send_addr_info, style:'body', colSpan: 3},
                     {}, {}, {},
-                    {text:order.orderCustomer.recive_addr + ' ' + order.orderCustomer.recive_addr_info,style:'body', colSpan: 3},
+                    {text:order.orderCustomer.receive_addr + ' ' + order.orderCustomer.receive_addr_info,style:'body', colSpan: 3},
                     {}, {},
                 ]);
 
@@ -139,7 +139,7 @@
                 //大写
                 bodyarry.push([
                     {}, {}, {}, {}, {}, {}, {}, {},
-                    {text:'. \t\t\t '+this.getWan(order.orderTaking.recive) +' \t\t\t' +this.getQian(order.orderTaking.recive)+ ' \t\t' +this.getBai(order.orderTaking.recive)+' \t\t' +this.getShi(order.orderTaking.recive)+' \t\t' +this.getYuan(order.orderTaking.recive),style:'body',colSpan: 4},
+                    {text:'. \t\t\t '+this.getWan(order.orderTaking.receive) +' \t\t\t' +this.getQian(order.orderTaking.receive)+ ' \t\t' +this.getBai(order.orderTaking.receive)+' \t\t' +this.getShi(order.orderTaking.receive)+' \t\t' +this.getYuan(order.orderTaking.receive),style:'body',colSpan: 4},
                     {},
                     {},
                     {},
@@ -152,9 +152,9 @@
                 bodyarry.push([
                     {}, {}, {}, {}, {}, {}, {}, {},
                     {},
-                    {text:order.orderCustomer.recive_name,style:'body'},
+                    {text:order.orderCustomer.receive_name,style:'body'},
                     {},
-                    {text:this.day(order.orderCustomer.recive_time),style:'body'},
+                    {text:this.day(order.orderCustomer.receive_time),style:'body'},
                 ]);
                 return bodyarry;
             },

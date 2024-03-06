@@ -47,12 +47,12 @@
                 bodyarry.push(['运单号', order.order.order_number ,'下单时间',this.day(order.orderCustomer.time)]);
                 bodyarry.push(['发货人', order.orderCustomer.send_name, '联系方式', order.orderCustomer.send_phone]);
                 bodyarry.push(['发货地址', {colSpan: 3, text: order.orderCustomer.send_addr + " " + order.orderCustomer.send_addr_info}]);
-                bodyarry.push(['收货人', order.orderCustomer.recive_name, '联系方式', order.orderCustomer.recive_phone]);
-                bodyarry.push(['收货地址', {colSpan: 3, text: order.orderCustomer.recive_addr + " " + order.orderCustomer.recive_addr_info}]);
+                bodyarry.push(['收货人', order.orderCustomer.receive_name, '联系方式', order.orderCustomer.receive_phone]);
+                bodyarry.push(['收货地址', {colSpan: 3, text: order.orderCustomer.receive_addr + " " + order.orderCustomer.receive_addr_info}]);
                 bodyarry.push(['承运司机', order.fleetDriver.name, '联系方式', order.fleetDriver.phone]);
                 bodyarry.push(['承运车辆', order.fleetCar.plate, '车型', order.fleetCar.type]);
                 bodyarry.push(['承运日期',  {colSpan: 3, text: this.day(order.orderCustomer.send_time)}]);
-                bodyarry.push(['到货日期',  {colSpan: 3, text: this.day(order.orderCustomer.recive_time)}]);
+                bodyarry.push(['到货日期',  {colSpan: 3, text: this.day(order.orderCustomer.receive_time)}]);
                 bodyarry.push([{colSpan: 4, text: '货物信息'}]);
                 bodyarry.push(['名称', '重量', '数量', '运费']);
                 if(order.orderGoods == null || order.orderGoods.length == 0)
@@ -88,7 +88,7 @@
                                 body: [
                                     ['保险', order.orderTaking.safes + ' 元'],
                                     ['运费', order.orderTaking.freight + ' 元'],
-                                    ['合计金额', order.orderTaking.recive + ' 元']
+                                    ['合计金额', order.orderTaking.receive + ' 元']
                                 ]
                             }
                         },

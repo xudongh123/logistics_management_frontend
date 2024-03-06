@@ -19,96 +19,96 @@
                         <el-form label-position="left" class="demo-table-expand">
                             <el-col :span="8">
                                 <el-form-item label="车牌号">
-                                    <span>{{ props.row.fleetCar.plate }}</span>
+                                    <span>{{ props.row.plate }}</span>
                                 </el-form-item>
                                 <el-form-item label="创建时间">
-                                    <span>{{ props.row.fleetCar.time | time }}</span>
+                                    <span>{{ props.row.time | time }}</span>
                                 </el-form-item>
                                 <el-form-item label="车辆类型">
-                                    <span>{{ props.row.fleetCar.type }}</span>
+                                    <span>{{ props.row.type }}</span>
                                 </el-form-item>
                                 <el-form-item label="车辆所属">
-                                    <span>{{ props.row.fleetCar.resource }}</span>
+                                    <span>{{ props.row.resource }}</span>
                                 </el-form-item>
                                 <el-form-item label="挂车车牌">
-                                    <span>{{ props.row.fleetCar.two_plate }}</span>
+                                    <span>{{ props.row.twoPlate }}</span>
                                 </el-form-item>
                                 <el-form-item label="随车电话">
-                                    <span>{{ props.row.fleetCar.driver_phone }}</span>
+                                    <span>{{ props.row.driverPhone }}</span>
                                 </el-form-item>
                                 <el-form-item label="随车司机">
-                                    <span>{{ props.row.fleetCar.driver_name }}</span>
+                                    <span>{{ props.row.driverName }}</span>
                                 </el-form-item>
                             </el-col>
                             <el-col :span="8">
                                 <el-form-item label="能耗类型">
-                                    <span>{{ props.row.fleetCar.energy }}</span>
+                                    <span>{{ props.row.energy }}</span>
                                 </el-form-item>
                                 <el-form-item label="车辆长度">
-                                    <span>{{ props.row.fleetCar.length }}</span>
+                                    <span>{{ props.row.length }}</span>
                                 </el-form-item>
                                 <el-form-item label="核定载重吨">
-                                    <span>{{ props.row.fleetCar.weight }}</span>
+                                    <span>{{ props.row.weight }}</span>
                                 </el-form-item>
                                 <el-form-item label="汽车VIN码">
-                                    <span>{{ props.row.fleetCar.vin }}</span>
+                                    <span>{{ props.row.vin }}</span>
                                 </el-form-item>
                                 <el-form-item label="车辆品牌">
-                                    <span>{{ props.row.fleetCar.brand }}</span>
+                                    <span>{{ props.row.brand }}</span>
                                 </el-form-item>
                                 <el-form-item label="发动机号">
-                                    <span>{{ props.row.fleetCar.engine }}</span>
+                                    <span>{{ props.row.engine }}</span>
                                 </el-form-item>
                                 <el-form-item label="车轴数">
-                                    <span>{{ props.row.fleetCar.axle }}</span>
+                                    <span>{{ props.row.axle }}</span>
                                 </el-form-item>
                             </el-col>
                             <el-col :span="8">
                                 <el-form-item label="轴距">
-                                    <span>{{ props.row.fleetCar.wheelbase }}</span>
+                                    <span>{{ props.row.wheelbase }}</span>
                                 </el-form-item>
                                 <el-form-item label="轮胎数量">
-                                    <span>{{ props.row.fleetCar.tire }}</span>
+                                    <span>{{ props.row.tire }}</span>
                                 </el-form-item>
                                 <el-form-item label="出厂日期">
-                                    <span>{{ props.row.fleetCar.factory_time | time}}</span>
+                                    <span>{{ props.row.factoryTime | time}}</span>
                                 </el-form-item>
                                 <el-form-item label="购买日期">
-                                    <span>{{ props.row.fleetCar.buy_time | time }}</span>
+                                    <span>{{ props.row.buyTime | time }}</span>
                                 </el-form-item>
                                 <el-form-item label="购买价格">
-                                    <span>{{ props.row.fleetCar.buy_price }}</span>
+                                    <span>{{ props.row.buyPrice }}</span>
                                 </el-form-item>
                                 <el-form-item label="年审日期">
-                                    <span>{{ props.row.fleetCar.limited_time | time }}</span>
+                                    <span>{{ props.row.limitedTime | time }}</span>
                                 </el-form-item>
                             </el-col>
                         </el-form>
                     </template>
                 </el-table-column>
-                <el-table-column prop="fleetCar.plate" label="车牌号"/>
-                <el-table-column prop="fleetCar.type" label="车辆类型"/>
-                <el-table-column prop="fleetCar.brand" label="车辆品牌"/>
+                <el-table-column prop="plate" label="车牌号"/>
+                <el-table-column prop="type" label="车辆类型"/>
+                <el-table-column prop="brand" label="车辆品牌"/>
                 <el-table-column
                     label="车辆所属">
                     <template scope="scope">
-                        <el-tag type="primary" >{{scope.row.fleetCar.resource}}</el-tag>
+                        <el-tag type="primary" >{{scope.row.resource}}</el-tag>
                     </template>
                 </el-table-column>
                 <el-table-column
                     label="添加时间">
                     <template scope="scope">
-                        <p>{{scope.row.fleetCar.time | time}}</p>
+                        <p>{{scope.row.time | time}}</p>
                     </template>
                 </el-table-column>
-                <el-table-column prop="fleetCar.remark" label="备注"/>
+                <el-table-column prop="remark" label="备注"/>
 
                 <el-table-column label="操作" width="180">
                     <template scope="scope">
 
                             <el-button-group>
                                 <!--<el-button type="primary" icon="edit" size="small">编辑</el-button>-->
-                                <el-button type="danger" @click="deleteData(scope.row.fleetCar.id)" icon="delete" size="small">删除</el-button>
+                                <el-button type="danger" @click="deleteData(scope.row.id)" icon="delete" size="small">删除</el-button>
                             </el-button-group>
                     </template>
                 </el-table-column>

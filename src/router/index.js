@@ -148,6 +148,14 @@ export default new Router({
                     component: resolve => require(['../components/company/page/user/account/info.vue'], resolve)
                 },
                 {
+                    path: 'accountList',
+                    component: resolve => require(['../components/company/page/user/account/list.vue'], resolve)
+                },
+                {
+                    path: 'account/add',
+                    component: resolve => require(['../components/company/page/user/account/add.vue'], resolve)
+                },
+                {
                     path: 'recharge',
                     component: resolve => require(['../components/company/page/user/recharge/list.vue'], resolve)
                 },

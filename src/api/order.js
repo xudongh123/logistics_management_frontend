@@ -63,21 +63,21 @@ export function addTakingOrder(params) {
     });
 }
 
-export function refuseCustomerOrder(params) {
+export function refuseCustomerOrder(data) {
     return fetch({
         url: '/v1/order/customer/refuse',
         method: 'post',
-        params
+        data
     });
 }
 
 
 //订单签收
-export function addSignOrder(params) {
+export function addSignOrder(data) {
     return fetch({
         url: '/v1/order/sign',
         method: 'post',
-        params
+        data
     });
 }
 

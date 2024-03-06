@@ -16,19 +16,19 @@ export function getInfo(params) {
     });
 }
 
-export function updateInfo(params) {
+export function updateInfo(data) {
     return fetch({
         url: '/v1/user/customer/info',
-        method: 'put',
-        params
+        method: 'post',
+        data
     });
 }
 
-export function updatePassword(params) {
+export function updatePassword(data) {
     return fetch({
         url: '/v1/user/customer/password',
-        method: 'put',
-        params
+        method: 'post',
+        data
     });
 }
 

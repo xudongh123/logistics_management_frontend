@@ -82,17 +82,21 @@
                                 title: '个人中心'
                             },
                             {
-                                icon: 'el-icon-plus',
-                                index: '/company/home/recharge',
-                                title: '账户充值'
-                            }
+                                index: '/company/home/accountList',
+                                title: '账户列表'
+                            },
+                            // {
+                            //     icon: 'el-icon-plus',
+                            //     index: '/company/home/recharge',
+                            //     title: '账户充值'
+                            // }
                         ]
-                    },
-                    {
-                        icon: 'el-icon-setting',
-                        index: '/company/home/system/config',
-                        title: '系统设置'
                     }
+                    // {
+                    //     icon: 'el-icon-setting',
+                    //     index: '/company/home/system/config',
+                    //     title: '系统设置'
+                    // }
                 ]
             }
         },

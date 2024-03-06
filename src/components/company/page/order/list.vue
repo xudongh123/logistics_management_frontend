@@ -14,51 +14,52 @@
                                  type="index"
                                  width="50">
                 </el-table-column>
-                <el-table-column label="订单号" width="180">
+                <el-table-column label="订单号" width="300">
                     <template scope="scope">
-                        <el-button type="text" @click="onOrder(scope.row.order.id)">{{ scope.row.order.order_number }}</el-button>
+                        <el-button type="text" @click="onOrder(scope.row.id)">{{ scope.row.orderNumber }}</el-button>
                     </template>
                 </el-table-column>
                 <el-table-column label="发货人" width="250">
                     <template scope="scope">
                         <div style="margin-top:10px;margin-bottom: 10px">
-                            <p>姓名：{{scope.row.orderCustomer.send_name}}</p>
-                            <p>手机：{{scope.row.orderCustomer.send_phone}}</p>
-                            <p>地址：{{scope.row.orderCustomer.send_addr}}</p>
+                            <p>姓名：{{scope.row.sendName}}</p>
+                            <p>手机：{{scope.row.sendPhone}}</p>
+                            <p>地址：{{scope.row.sendAddr}}</p>
                         </div>
                     </template>
                 </el-table-column>
                 <el-table-column label="收货人" width="250">
                     <template scope="scope">
                         <div style="margin-top:10px;margin-bottom: 10px">
-                            <p>姓名：{{scope.row.orderCustomer.recive_name}}</p>
-                            <p>手机：{{scope.row.orderCustomer.recive_phone}}</p>
-                            <p>地址：{{scope.row.orderCustomer.recive_addr}}</p>
+                            <p>姓名：{{scope.row.receiveName}}</p>
+                            <p>手机：{{scope.row.receivePhone}}</p>
+                            <p>地址：{{scope.row.receiveAddr}}</p>
                         </div>
                     </template>
                 </el-table-column>
-
                 <el-table-column
                     label="订单状态" width="150">
                     <template scope="scope">
-                        <el-tag type="gray" v-show="scope.row.order.status ==='ORDER_PLACE'">未处理</el-tag>
-                        <el-tag type="primary" v-show="scope.row.order.status ==='ORDER_TAKING'">运输中</el-tag>
-                        <el-tag type="success" v-show="scope.row.order.status ==='ORDER_SIGN'">已签收</el-tag>
-                        <el-tag type="danger" v-show="scope.row.order.status ==='ORDER_REFUSE'">已拒绝</el-tag>
+                        <el-tag type="gray" v-show="scope.row.status ==='ORDER_PLACE'">未处理</el-tag>
+                        <el-tag type="primary" v-show="scope.row.status ==='ORDER_TAKING'">运输中</el-tag>
+                        <el-tag type="success" v-show="scope.row.status ==='ORDER_SIGN'">已签收</el-tag>
+                        <el-tag type="danger" v-show="scope.row.status ==='ORDER_REFUSE'">已拒绝</el-tag>
 
                     </template>
                 </el-table-column>
-
                 <el-table-column
-                    label="费用" width="200">
+                    label="时间" width="300">
                     <template scope="scope" >
-                        <div v-if="scope.row.order.status =='ORDER_TAKING' || scope.row.order.status =='ORDER_SIGN'">
-                            <p>应收账款：{{scope.row.orderTaking.recive}} 元</p>
-                            <p>应付账款：{{scope.row.orderTaking.pay}} 元</p>
+                        <p><el-tag type="gray">下单时间：{{scope.row.time|time}}</el-tag></p>
+                        <p><el-tag type="primary">预计发货：{{scope.row.sendTime|time}}</el-tag></p>
+                        <p><el-tag type="success">预计送达：{{scope.row.receiveTime|time}}</el-tag></p>
+                        <!-- <div v-if="scope.row.status =='ORDER_TAKING' || scope.row.status =='ORDER_SIGN'">
+                            <p>应收账款：{{scope.row.receive}} 元</p>
+                            <p>应付账款：{{scope.row.pay}} 元</p>
                         </div>
                         <div v-else>
                             <el-tag type="gray" >未处理</el-tag>
-                        </div>
+                        </div> -->
                     </template>
                 </el-table-column>
 <!-- 
@@ -78,37 +79,37 @@
                 </el-table-column> -->
 
 
-                <el-table-column
+                <!-- <el-table-column
                     label="时间" width="250">
                     <template scope="scope" >
-                        <div v-if="scope.row.order.status ==='ORDER_REFUSE'">
-                            <p><el-tag type="gray">下单时间：{{scope.row.orderCustomer.time|time}}</el-tag></p>
+                        <p><el-tag type="gray">下单时间：{{scope.row.time|time}}</el-tag></p>
+                        <div v-if="scope.row.status ==='ORDER_REFUSE'">
+                            <p><el-tag type="gray">下单时间：{{scope.row.time|time}}</el-tag></p>
                         </div>
-                        <div v-if="scope.row.order.status ==='ORDER_PLACE'">
-                            <p><el-tag type="gray">下单时间：{{scope.row.orderCustomer.time|time}}</el-tag></p>
+                        <div v-if="scope.row.status ==='ORDER_PLACE'">
+                            <p><el-tag type="gray">下单时间：{{scope.row.time|time}}</el-tag></p>
                         </div>
-                        <div v-if="scope.row.order.status ==='ORDER_TAKING'">
-                            <p><el-tag type="gray">下单时间：{{scope.row.orderCustomer.time|time}}</el-tag></p>
-                            <p><el-tag type="primary">处理时间：{{scope.row.orderTaking.time|time}}</el-tag></p>
+                        <div v-if="scope.row.status ==='ORDER_TAKING'">
+                            <p><el-tag type="gray">下单时间：{{scope.row.time|time}}</el-tag></p>
+                            <p><el-tag type="primary">处理时间：{{scope.row.time|time}}</el-tag></p>
                         </div>
-                        <div v-if="scope.row.order.status ==='ORDER_SIGN'">
-                            <p><el-tag type="gray">下单时间：{{scope.row.orderCustomer.time|time}}</el-tag></p>
-                            <p><el-tag type="primary">处理时间：{{scope.row.orderTaking.time|time}}</el-tag></p>
-                            <p><el-tag type="success">签收时间：{{scope.row.orderSign.time|time}}</el-tag></p>
+                        <div v-if="scope.row.status ==='ORDER_SIGN'">
+                            <p><el-tag type="gray">下单时间：{{scope.row.time|time}}</el-tag></p>
+                            <p><el-tag type="primary">处理时间：{{scope.row.time|time}}</el-tag></p>
+                            <p><el-tag type="success">签收时间：{{scope.row.time|time}}</el-tag></p>
                         </div>
                     </template>
-                </el-table-column>
-
+                </el-table-column> -->
                 <el-table-column label="操作" width="180" fixed="right">
                     <template scope="scope">
-                        <el-row v-if="scope.row.order.status ==='ORDER_PLACE'"  type="flex" justify="space-around">
+                        <el-row v-if="scope.row.status ==='ORDER_PLACE'"  type="flex" justify="space-around">
                             <el-button-group>
-                                <el-button type="info" icon="plus" size="small" @click="taking(scope.row.order.id)">派车</el-button>
-                                <el-button type="warning" icon="delete" size="small" @click="refuse(scope.row.order.id)">拒绝 </el-button>
+                                <el-button type="info" icon="plus" size="small" @click="taking(scope.row.id)">派车</el-button>
+                                <el-button type="warning" icon="delete" size="small" @click="refuse(scope.row.id)">拒绝 </el-button>
                             </el-button-group>
                         </el-row>
-                        <el-row v-if="scope.row.order.status ==='ORDER_TAKING'"  type="flex" justify="space-around">
-                            <el-button type="success" size="small" icon="circle-check" @click="sign(scope.row.order.id)">签收</el-button>
+                        <el-row v-if="scope.row.status ==='ORDER_TAKING'"  type="flex" justify="space-around">
+                            <el-button type="success" size="small" icon="circle-check" @click="sign(scope.row.id)">签收</el-button>
                         </el-row>
                     </template>
                 </el-table-column>
@@ -133,7 +134,7 @@
         </el-row>
 
 
-        <el-dialog title="签收订单" :visible.sync="dialogFormVisible">
+        <!-- <el-dialog title="签收订单" :visible.sync="dialogFormVisible">
             <p>请上传单据照片：</p>
             <el-row type="flex" justify="center">
                 <el-upload
@@ -158,7 +159,7 @@
                 <el-button @click="dialogFormVisible = false">取 消</el-button>
                 <el-button type="primary" @click="signSubmit">确 定</el-button>
             </div>
-        </el-dialog>
+        </el-dialog> -->
     </el-row>
 </template>
 
@@ -181,12 +182,9 @@
                 },
                 refuseForm:{
                     token:localStorage.getItem('company_token'),
-                    fk_order_id:''
                 },
                 signForm:{
                     token:localStorage.getItem('company_token'),
-                    fk_order_id:'',
-                    order_img:''
                 },
                 dialogFormVisible:false,
                 imagePercente: 0,
@@ -206,9 +204,9 @@
                     this.total = response.data.total;
                     this.listLoading = false;
                 });
-                getUploadToken().then(response => {
-                    this.uploadToken.token = response.data;
-                });
+                // getUploadToken().then(response => {
+                //     this.uploadToken.token = response.data;
+                // });
             },
             handleSizeChange(val) {
                 this.listQuery.pageSize = val;
@@ -272,7 +270,7 @@
                     cancelButtonText: '取消',
                     type: 'warning'
                 }).then(() => {
-                    this.refuseForm.fk_order_id = id;
+                    this.refuseForm.id = id;
                     refuseCustomerOrder(this.refuseForm).then(response => {
                         this.$message({
                             type: 'success',
@@ -299,10 +297,24 @@
                 });
             },
             sign(id){
-                this.signForm.fk_order_id = id;
-                this.dialogFormVisible = true;
-                this.signForm.order_img = '';
-                this.imagePercente = 0;
+                this.$confirm('此操作将签收该订单, 是否继续?', '提示', {
+                    confirmButtonText: '确定',
+                    cancelButtonText: '取消',
+                    type: 'info'
+                }).then(() => {
+                    this.signForm.id = id;
+                    addSignOrder(this.signForm).then(response => {
+                        this.$message({
+                            type: 'success',
+                            message: '签收成功!'
+                        });
+                        this.fetchData();
+                    });
+                });
+                // this.signForm.fk_order_id = id;
+                // this.dialogFormVisible = true;
+                // this.signForm.order_img = '';
+                // this.imagePercente = 0;
             },
             signSubmit(){
                 this.dialogFormVisible = false;
@@ -314,27 +326,27 @@
                     this.fetchData();
                 });
             },
-            handleAvatarSuccess(res, file) {
-                this.signForm.order_img = 'http://otj3hc8no.bkt.clouddn.com/'+ res.key;
-            },
-            beforeAvatarUpload(file) {
-                const isJPG = file.type === 'image/jpeg';
-                const isPNG = file.type === 'image/png';
-                const isLt2M = file.size / 1024 / 1024 < 2;
+            // handleAvatarSuccess(res, file) {
+            //     this.signForm.order_img = 'http://otj3hc8no.bkt.clouddn.com/'+ res.key;
+            // },
+            // beforeAvatarUpload(file) {
+            //     const isJPG = file.type === 'image/jpeg';
+            //     const isPNG = file.type === 'image/png';
+            //     const isLt2M = file.size / 1024 / 1024 < 2;
 
-                if (!isJPG && !isPNG) {
-                    this.$message.error('上传头像图片只能是 JPG/PNG 格式!');
-                }
-                if (!isLt2M) {
-                    this.$message.error('上传头像图片大小不能超过 2MB!');
-                }
-                return isJPG && isLt2M;
-            },
-            progressUpload(event, file, fileList){
-                console.log(event);
-                console.log(file);
-                this.imagePercente = event.percent;
-            }
+            //     if (!isJPG && !isPNG) {
+            //         this.$message.error('上传头像图片只能是 JPG/PNG 格式!');
+            //     }
+            //     if (!isLt2M) {
+            //         this.$message.error('上传头像图片大小不能超过 2MB!');
+            //     }
+            //     return isJPG && isLt2M;
+            // },
+            // progressUpload(event, file, fileList){
+            //     console.log(event);
+            //     console.log(file);
+            //     this.imagePercente = event.percent;
+            // }
         },
         filters: {
             time: function (value) {

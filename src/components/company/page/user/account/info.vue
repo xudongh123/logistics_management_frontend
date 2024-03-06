@@ -6,7 +6,7 @@
         </el-breadcrumb>
 
         <el-row style="margin-top: 50px">
-            <el-form :model="userInfoForm" :rules="rules" ref="userInfoForm" label-width="150px" class="demo-ruleForm">
+            <el-form :model="userForm" :rules="rules" ref="userForm" label-width="150px" class="demo-ruleForm">
 
                 <el-row>
                     <el-col :span="8">
@@ -15,7 +15,7 @@
                                 <el-input v-model="userForm.username" :disabled="true"></el-input>
                             </el-form-item>
                         </el-row>
-                        <el-row>
+                        <!-- <el-row>
                             <el-form-item label="头像">
                                 <el-upload
                                     class="avatar-uploader"
@@ -30,33 +30,33 @@
                                 </el-upload>
                                 <el-progress :text-inside="true" :stroke-width="18" :percentage="imagePercente" style="width: 200px"></el-progress>
                             </el-form-item>
-                        </el-row>
+                        </el-row> -->
 
                         <el-row>
                             <el-form-item label="昵称">
-                                <el-input v-model="userInfoForm.nickname"></el-input>
+                                <el-input v-model="userForm.nickname"></el-input>
                             </el-form-item>
                             <el-form-item label="性别" prop="sex">
-                                <el-radio-group v-model="userInfoForm.sex">
+                                <el-radio-group v-model="userForm.sex">
                                     <el-radio class="radio" label="男"></el-radio>
                                     <el-radio class="radio" label="女"></el-radio>
                                 </el-radio-group>
                             </el-form-item>
-                            <el-form-item label="公司名称" prop="company">
-                                <el-input v-model="userInfoForm.company"></el-input>
-                            </el-form-item>
+                            <!-- <el-form-item label="公司名称" prop="company">
+                                <el-input v-model="userForm.company"></el-input>
+                            </el-form-item> -->
                         </el-row>
                     </el-col>
 
-                    <el-col :span="8" :offset="1">
+                    <!-- <el-col :span="8" :offset="1">
                         <el-form-item label="账户余额:">
                             <p style="font-size:25px">{{userInfoForm.money}} 元</p>
                         </el-form-item>
-                    </el-col>
+                    </el-col> -->
                 </el-row>
 
                 <el-form-item>
-                    <el-button type="primary" @click="submitForm('userInfoForm')" icon="upload">更新账户</el-button>
+                    <el-button type="primary" @click="submitForm('userForm')" icon="upload">更新账户</el-button>
                     <el-button type="warning" @click="showPasswordDialog" icon="edit">修改密码</el-button>
                 </el-form-item>
             </el-form>
@@ -65,10 +65,10 @@
         <el-dialog title="重置密码" :visible.sync="dialogPasswordVisible">
             <el-form :model="passwordForm">
                 <el-form-item label="旧密码">
-                    <el-input type="password" v-model="passwordForm.old_password" style="width: 400px"></el-input>
+                    <el-input type="password" v-model="passwordForm.oldPassword" style="width: 400px"></el-input>
                 </el-form-item>
                 <el-form-item label="新密码">
-                    <el-input type="password" v-model="passwordForm.new_password" style="width: 400px"></el-input>
+                    <el-input type="password" v-model="passwordForm.newPassword" style="width: 400px"></el-input>
                 </el-form-item>
             </el-form>
             <div slot="footer" class="dialog-footer">
@@ -90,31 +90,29 @@
                 LoadingParam:{
                     token: localStorage.getItem('company_token')
                 },
-                uploadToken: {
-                    token:''
-                },
-                userInfoForm: {
-                    id: '',
-                    user_id: '',
+                // uploadToken: {
+                //     token:''
+                // },
+                // userInfoForm: {
+                //     id: '',
+                //     user_id: '',
+                //     nickname: '',
+                //     sex: '',
+                //     img: '',
+                //     birthday: '',
+                //     company: '',
+                //     money: 0,
+                //     token: '',
+                // },
+                userForm: {
+                    username: '',
                     nickname: '',
                     sex: '',
-                    img: '',
-                    birthday: '',
-                    company: '',
-                    money: 0,
-                    token: '',
-                },
-                userForm: {
-                    id: '',
-                    username: '',
-                    phone: '',
-                    type: '',
-                    regtime: '',
                 },
                 passwordForm:{
                     token: localStorage.getItem('company_token'),
-                    old_password:'',
-                    new_password:'',
+                    oldPassword:'',
+                    newPassword:'',
                 },
                 dialogPasswordVisible: false,
                 rules: {
@@ -135,41 +133,41 @@
             loadForm(){
                 this.Loading = true;
                 getInfo(this.LoadingParam).then(response => {
-                    this.userInfoForm = response.data.userInfo;
-                    this.userForm = response.data.user;
-                    this.userInfoForm.token = localStorage.getItem('company_token');
-                    if(this.userInfoForm.birthday != null)
-                        this.userInfoForm.birthday = parseTime(this.userInfoForm.birthday,"{y}/{m}/{d}");
+                   //this.userInfoForm = response.data.userInfo;
+                    this.userForm = response.data;
+                    this.userForm.token = localStorage.getItem('company_token');
+                    // if(this.userInfoForm.birthday != null)
+                    //     this.userInfoForm.birthday = parseTime(this.userInfoForm.birthday,"{y}/{m}/{d}");
                     this.Loading = false;
                 });
 
-                getUploadToken().then(response => {
-                    this.uploadToken.token = response.data;
-                });
+                // getUploadToken().then(response => {
+                //     this.uploadToken.token = response.data;
+                // });
             },
-            handleAvatarSuccess(res, file) {
-                this.userInfoForm.img ='http://otj3hc8no.bkt.clouddn.com/'+ res.key
-            },
-            beforeAvatarUpload(file) {
-                const isJPG = file.type === 'image/jpeg';
-                const isLt2M = file.size / 1024 / 1024 < 2;
+            // handleAvatarSuccess(res, file) {
+            //     this.userInfoForm.img ='http://otj3hc8no.bkt.clouddn.com/'+ res.key
+            // },
+            // beforeAvatarUpload(file) {
+            //     const isJPG = file.type === 'image/jpeg';
+            //     const isLt2M = file.size / 1024 / 1024 < 2;
 
-                if (!isJPG) {
-                    this.$message.error('上传头像图片只能是 JPG 格式!');
-                }
-                if (!isLt2M) {
-                    this.$message.error('上传头像图片大小不能超过 2MB!');
-                }
-                return isJPG && isLt2M;
-            },
-            progressUpload(event, file, fileList){
-                this.imagePercente = event.percent;
-            },
+            //     if (!isJPG) {
+            //         this.$message.error('上传头像图片只能是 JPG 格式!');
+            //     }
+            //     if (!isLt2M) {
+            //         this.$message.error('上传头像图片大小不能超过 2MB!');
+            //     }
+            //     return isJPG && isLt2M;
+            // },
+            // progressUpload(event, file, fileList){
+            //     this.imagePercente = event.percent;
+            // },
             submitForm(formName) {
                 this.$refs[formName].validate((valid) => {
                     if (valid) {
                         this.listLoading = true;
-                        updateInfo(this.userInfoForm).then(response => {
+                        updateInfo(this.userForm).then(response => {
                                 this.listLoading = false;
                                 this.$message({
                                     type: 'success',
@@ -189,13 +187,25 @@
                 this.dialogPasswordVisible = true;
             },
             password(){
-                this.dialogPasswordVisible = false;
-                updatePassword(this.passwordForm).then(response => {
+                if (this.userForm.password !== this.passwordForm.oldPassword) {
                     this.$message({
-                        type: 'success',
-                        message: '修改密码成功!'
+                        type: 'error',
+                        message: '旧密码不一致!'
                     });
-                });
+                } else if (this.passwordForm.oldPassword == this.passwordForm.newPassword) {
+                    this.$message({
+                        type: 'error',
+                        message: '新密码需与旧密码不同!'
+                    });
+                } else {
+                    this.dialogPasswordVisible = false;
+                    updatePassword(this.passwordForm).then(response => {
+                        this.$message({
+                            type: 'success',
+                            message: '修改密码成功!'
+                        });
+                    });
+                }
             },
         }
     }

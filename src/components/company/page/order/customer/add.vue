@@ -11,58 +11,58 @@
                     <el-col>
                         <el-row>
                             <el-col :span="8">
-                                <el-form-item label="寄件人姓名" prop="send_name">
-                                    <el-input v-model="ruleForm.send_name"></el-input>
+                                <el-form-item label="寄件人姓名" prop="sendName">
+                                    <el-input v-model="ruleForm.sendName"></el-input>
                                 </el-form-item>
                             </el-col>
                             <el-col :span="8">
-                                <el-form-item label="寄件人手机号" prop="send_phone">
-                                    <el-input v-model="ruleForm.send_phone"></el-input>
+                                <el-form-item label="寄件人手机号" prop="sendPhone">
+                                    <el-input v-model="ruleForm.sendPhone"></el-input>
                                 </el-form-item>
                             </el-col>
                         </el-row>
                         <el-row>
                             <el-col :span="8">
-                                <el-form-item label="寄件人地址" prop="send_addr_ex">
-                                    <el-cascader :options="options" v-model="ruleForm.send_addr_ex"
+                                <el-form-item label="寄件人地址" prop="sendAddrEx">
+                                    <el-cascader :options="options" v-model="ruleForm.sendAddrEx"
                                                  style="width: 100%;"></el-cascader>
                                 </el-form-item>
                             </el-col>
                             <el-col :span="12">
-                                <el-form-item label="寄件人详细地址" prop="send_addr_info">
-                                    <el-input type="textarea" v-model="ruleForm.send_addr_info" @blur="initMap"></el-input>
+                                <el-form-item label="寄件人详细地址" prop="sendAddrInfo">
+                                    <el-input type="textarea" v-model="ruleForm.sendAddrInfo" @blur="initMap"></el-input>
                                 </el-form-item>
                             </el-col>
                         </el-row>
 
                         <el-row>
                             <el-col :span="8">
-                                <el-form-item label="收件人姓名" prop="recive_name">
-                                    <el-input v-model="ruleForm.recive_name"></el-input>
+                                <el-form-item label="收件人姓名" prop="receiveName">
+                                    <el-input v-model="ruleForm.receiveName"></el-input>
                                 </el-form-item>
                             </el-col>
                             <el-col :span="8">
-                                <el-form-item label="收件人手机号" prop="recive_phone">
-                                    <el-input v-model="ruleForm.recive_phone"></el-input>
+                                <el-form-item label="收件人手机号" prop="receivePhone">
+                                    <el-input v-model="ruleForm.receivePhone"></el-input>
                                 </el-form-item>
                             </el-col>
                         </el-row>
                         <el-row>
                             <el-col :span="8">
-                                <el-form-item label="收件人地址" prop="recive_addr_ex">
-                                    <el-cascader :options="options" v-model="ruleForm.recive_addr_ex"
+                                <el-form-item label="收件人地址" prop="receiveAddrEx">
+                                    <el-cascader :options="options" v-model="ruleForm.receiveAddrEx"
                                                  style="width: 100%;"></el-cascader>
                                 </el-form-item>
                             </el-col>
                             <el-col :span="12">
-                                <el-form-item label="收件人详细地址" prop="recive_addr_info">
-                                    <el-input type="textarea" v-model="ruleForm.recive_addr_info" @blur="initMap"></el-input>
+                                <el-form-item label="收件人详细地址" prop="receiveAddrInfo">
+                                    <el-input type="textarea" v-model="ruleForm.receiveAddrInfo" @blur="initMap"></el-input>
                                 </el-form-item>
                             </el-col>
                         </el-row>
 
-                        <el-form-item label="配送方式" prop="dispatching_type">
-                            <el-radio-group v-model="ruleForm.dispatching_type">
+                        <el-form-item label="配送方式" prop="dispatchingType">
+                            <el-radio-group v-model="ruleForm.dispatchingType">
                                 <el-radio class="radio" label="配送"></el-radio>
                                 <el-radio class="radio" label="自提"></el-radio>
                             </el-radio-group>
@@ -70,17 +70,17 @@
 
                         <el-row>
                             <el-col :span="8">
-                                <el-form-item label="预计发货日期" prop="send_time_ex">
+                                <el-form-item label="预计发货日期" prop="sendTime">
                                     <el-date-picker type="date" placeholder="选择日期"
-                                                    v-model="ruleForm.send_time_ex"
-                                                    format="yyyy年MM月dd日"
+                                                    v-model="ruleForm.sendTime"
+                                                    format="yyyy-MM-dd"
                                                     :editable="false"
                                                     style="width: 100%;"></el-date-picker>
                                 </el-form-item>
                             </el-col>
                             <el-col :span="8">
-                                <el-form-item label="限时到达日期" prop="recive_time_ex">
-                                    <el-date-picker type="date" placeholder="选择日期" v-model="ruleForm.recive_time_ex" format="yyyy年MM月dd日" :editable="false"
+                                <el-form-item label="限时到达日期" prop="receiveTime">
+                                    <el-date-picker type="date" placeholder="选择日期" v-model="ruleForm.receiveTime" format="yyyy-MM-dd" :editable="false"
                                                     style="width: 100%;"></el-date-picker>
                                 </el-form-item>
                             </el-col>
@@ -89,14 +89,14 @@
                         <!-- <el-row>
                                 <el-form-item label="指定物流公司接单">
                                     <el-switch
-                                        v-model="ruleForm.is_company">
+                                        v-model="ruleForm.isCompany">
                                     </el-switch>
                                 </el-form-item>
                         </el-row>
                         <el-row>
                             <el-col :span="10">
-                                <el-form-item label="物流公司" v-if="ruleForm.is_company" prop="fk_want_company_id">
-                                    <el-select v-model="ruleForm.fk_want_company_id" placeholder="请选择物流公司" style="width: 100%;">
+                                <el-form-item label="物流公司" v-if="ruleForm.isCompany" prop="fkWantCompanyId">
+                                    <el-select v-model="ruleForm.fkWantCompanyId" placeholder="请选择物流公司" style="width: 100%;">
                                         <el-option
                                             v-for="item in companyList"
                                             :key="item.value"
@@ -167,7 +167,7 @@
                 </el-card>
 
                 <el-card class="box-card" style="margin: 50px"  v-loading.body="map.mapLoading" element-loading-text="正在规划路线，请稍后...">
-                    <el-alert :title="map.info_text" :type="map.info_type" :closable="false" show-icon style="width:300px;"/>
+                    <el-alert :title="map.infoText" :type="map.infoType" :closable="false" show-icon style="width:300px;"/>
                     <el-row v-show="map.result" style="margin: 10px">
                         <p>规划路程总计：<el-tag type="danger">{{map.length}}</el-tag></p><br/>
                         <p>预计驾驶时间：<el-tag type="danger">{{map.time}}</el-tag></p>
@@ -193,8 +193,8 @@
         data() {
             return {
                 map:{
-                    info_type:'info',
-                    info_text:'等待规划路线',
+                    infoType:'info',
+                    infoText:'等待规划路线',
                     result:false,
                     time:'',
                     length:'',
@@ -227,65 +227,63 @@
                     ]
                 },
                 ruleForm: {
-                    send_name: '',
-                    send_phone: '',
-                    send_addr: '',
-                    send_addr_ex: [],
-                    send_addr_info: '',
-                    recive_name: '',
-                    recive_phone: '',
-                    recive_addr: '',
-                    recive_addr_ex: [],
-                    recive_addr_info: '',
-                    dispatching_type: '',
-                    send_time_ex: null,
-                    recive_time_ex: null,
-                    send_time: '',
-                    recive_time: '',
+                    sendName: '',
+                    sendPhone: '',
+                    sendAddr: '',
+                    sendAddrEx: [],
+                    sendAddrInfo: '',
+                    receiveName: '',
+                    receivePhone: '',
+                    receiveAddr: '',
+                    receiveAddrEx: [],
+                    receiveAddrInfo: '',
+                    dispatchingType: '',
+                    sendTime: '',
+                    receiveTime: '',
                     goods: [],
-                    is_company:false,
-                    fk_want_company_id:null,
+                    isCompany:false,
+                    //fkWantCompanyId:null,
                     token: localStorage.getItem('company_token'),
                 },
                 rules: {
-                    send_name: [
+                    sendName: [
                         {required: true, message: '请输姓名'},
                         {min: 2, max: 5, message: '长度在 2 到 5 个字符'}
                     ],
-                    send_phone: [
+                    sendPhone: [
                         {required: true, message: '请填写手机号码'}
                     ],
-                    send_time_ex: [
+                    sendTime: [
                         {type: 'date', required: true, message: '请选择日期'}
                     ],
-                    send_addr_ex: [
+                    sendAddrEx: [
                         {required: true, message: '请输入地址'}
                     ],
-                    send_addr_info: [
+                    sendAddrInfo: [
                         {required: true, message: '请输入详细地址'}
                     ],
-                    recive_name: [
+                    receiveName: [
                         {required: true, message: '请输姓名'},
                         {min: 2, max: 5, message: '长度在 2 到 5 个字符'}
                     ],
-                    recive_phone: [
+                    receivePhone: [
                         {required: true, message: '请填写手机号码'}
                     ],
-                    recive_time_ex: [
+                    receiveTime: [
                         {type: 'date', required: true, message: '请选择日期'}
                     ],
-                    recive_addr_ex: [
+                    receiveAddrEx: [
                         {required: true, message: '请输入地址'}
                     ],
-                    recive_addr_info: [
+                    receiveAddrInfo: [
                         {required: true, message: '请输入详细地址'}
                     ],
-                    dispatching_type:[
+                    dispatchingType:[
                         {required: true, message: '请选择配送方式'}
                     ],
-                    fk_want_company_id:[
-                        {required: true, message: '请选择物流公司'}
-                    ]
+                    // fkWantCompanyId:[
+                    //     {required: true, message: '请选择物流公司'}
+                    // ]
                 }
             };
         },
@@ -378,35 +376,35 @@
             },
             submitConfig(){
                 //地址转换
-                this.ruleForm.recive_addr = '';
-                this.ruleForm.send_addr = '';
+                this.ruleForm.receiveAddr = '';
+                this.ruleForm.sendAddr = '';
                 for(var i=0; i<3; i++){
-                    this.ruleForm.recive_addr += CodeToText[this.ruleForm.recive_addr_ex[i]];
-                    this.ruleForm.send_addr += CodeToText[this.ruleForm.send_addr_ex[i]];
+                    this.ruleForm.receiveAddr += CodeToText[this.ruleForm.receiveAddrEx[i]];
+                    this.ruleForm.sendAddr += CodeToText[this.ruleForm.sendAddrEx[i]];
                     if(i!=2){
-                        this.ruleForm.send_addr +='/';
-                        this.ruleForm.recive_addr +='/';
+                        this.ruleForm.sendAddr +='/';
+                        this.ruleForm.receiveAddr +='/';
                     }
                 }
                 //时间转换
-                this.ruleForm.send_time = parseTime(this.ruleForm.send_time_ex,"{y}/{m}/{d}");
-                this.ruleForm.recive_time = parseTime(this.ruleForm.recive_time_ex,"{y}/{m}/{d}");
+                // this.ruleForm.sendTime = parseTime(this.ruleForm.sendTimeEx);
+                // this.ruleForm.receiveTime = parseTime(this.ruleForm.receiveTimeEx);
             },
             //地图回执路线
             initMap(){
                 //地址转换
-                var map_recive_addr = "";
-                var map_send_addr = "";
+                var mapReceiveAddr = "";
+                var mapSendAddr = "";
                 for(var i=0; i<3; i++){
-                    if(this.ruleForm.recive_addr_ex[i] == null)
+                    if(this.ruleForm.receiveAddrEx[i] == null)
                         return;
-                    map_recive_addr += CodeToText[this.ruleForm.recive_addr_ex[i]];
-                    map_send_addr += CodeToText[this.ruleForm.send_addr_ex[i]];
+                    mapReceiveAddr += CodeToText[this.ruleForm.receiveAddrEx[i]];
+                    mapSendAddr += CodeToText[this.ruleForm.sendAddrEx[i]];
                 }
-                map_recive_addr += this.ruleForm.recive_addr_info;
-                map_send_addr += this.ruleForm.send_addr_info;
-                map_recive_addr = map_recive_addr.replace("市辖区","");
-                map_send_addr = map_send_addr.replace("市辖区","");
+                mapReceiveAddr += this.ruleForm.receiveAddrInfo;
+                mapSendAddr += this.ruleForm.sendAddrInfo;
+                mapReceiveAddr = mapReceiveAddr.replace("市辖区","");
+                mapSendAddr = mapSendAddr.replace("市辖区","");
 
                 var map = this.amapManager.getMap();
                 map.clearMap();
@@ -416,18 +414,18 @@
                     var driving = new AMap.Driving({
                         map: map,
                     });
-                    driving.search([{keyword:map_send_addr},{keyword:map_recive_addr}], function(status, result){
+                    driving.search([{keyword:mapSendAddr},{keyword:mapReceiveAddr}], function(status, result){
                         if(status === 'complete' && result.info === 'OK') {
                             _this.map.result = true;
-                            _this.map.info_text = "路线规划成功";
-                            _this.map.info_type = "success";
+                            _this.map.infoText = "路线规划成功";
+                            _this.map.infoType = "success";
                             _this.map.time = (result.routes[0].time/3600).toFixed(1) + "小时";
                             _this.map.length = result.routes[0].distance/1000 + "公里";
                             console.log(result.routes[0]);
                         }else{
                             _this.map.result = false;
-                            _this.map.info_text = "路线规划出错";
-                            _this.map.info_type = "warning";
+                            _this.map.infoText = "路线规划出错";
+                            _this.map.infoType = "warning";
                         }
                     });
                 })

@@ -8,29 +8,29 @@
             </el-steps>
             </el-row>
             <el-card class="box-card" style="margin-top: 30px">
-                <h4>订单信息：{{order.order.order_number}}</h4>
+                <h4>订单信息：{{order.order.orderNumber}}</h4>
                 <el-form :model="order" label-width="150px" style="margin-top: 30px">
                     <el-row>
                         <el-col :span="8">
                             <el-form-item label="寄件人姓名">
-                                <p>{{order.orderCustomer.send_name}}</p>
+                                <p>{{order.orderCustomer.sendName}}</p>
                             </el-form-item>
                         </el-col>
                         <el-col :span="8">
                             <el-form-item label="寄件人手机号">
-                                <p>{{order.orderCustomer.send_phone}}</p>
+                                <p>{{order.orderCustomer.sendPhone}}</p>
                             </el-form-item>
                         </el-col>
                     </el-row>
                     <el-row>
                         <el-col :span="8">
                             <el-form-item label="寄件人地址" >
-                                <p>{{order.orderCustomer.send_addr}}</p>
+                                <p>{{order.orderCustomer.sendAddr}}</p>
                             </el-form-item>
                         </el-col>
                         <el-col :span="12">
                             <el-form-item label="寄件人详细地址">
-                                <p>{{order.orderCustomer.send_addr_info}}</p>
+                                <p>{{order.orderCustomer.sendAddrInfo}}</p>
                             </el-form-item>
                         </el-col>
                     </el-row>
@@ -38,43 +38,43 @@
                     <el-row>
                         <el-col :span="8">
                             <el-form-item label="收件人姓名">
-                                <p>{{order.orderCustomer.recive_name}}</p>
+                                <p>{{order.orderCustomer.receiveName}}</p>
                             </el-form-item>
                         </el-col>
                         <el-col :span="8">
                             <el-form-item label="收件人手机号">
-                                <p>{{order.orderCustomer.recive_phone}}</p>
+                                <p>{{order.orderCustomer.receivePhone}}</p>
                             </el-form-item>
                         </el-col>
                     </el-row>
                     <el-row>
                         <el-col :span="8">
                             <el-form-item label="收件人地址">
-                                <p>{{order.orderCustomer.recive_addr}}</p>
+                                <p>{{order.orderCustomer.receiveAddr}}</p>
                             </el-form-item>
                         </el-col>
                         <el-col :span="12">
                             <el-form-item label="收件人详细地址" >
-                                <p>{{order.orderCustomer.recive_addr_info}}</p>
+                                <p>{{order.orderCustomer.receiveAddrInfo}}</p>
                             </el-form-item>
                         </el-col>
                     </el-row>
                     <el-row>
                         <el-col :span="8">
                             <el-form-item label="预计发货日期" >
-                                <p>{{order.orderCustomer.send_time | day}}</p>
+                                <p>{{order.orderCustomer.sendTime | day}}</p>
                             </el-form-item>
                         </el-col>
                         <el-col :span="8">
                             <el-form-item label="限时到达日期">
-                                <p>{{order.orderCustomer.recive_time | day}}</p>
+                                <p>{{order.orderCustomer.receiveTime | day}}</p>
                             </el-form-item>
                         </el-col>
                     </el-row>
                     <el-row>
                         <el-col :span="8">
                             <el-form-item label="配送方式" >
-                                <p>{{order.orderCustomer.dispatching_type}}</p>
+                                <p>{{order.orderCustomer.dispatchingType}}</p>
                             </el-form-item>
                         </el-col>
                         <el-col :span="8">
@@ -205,7 +205,7 @@
                     <el-row>
                         <el-col :span="8">
                             <el-form-item label="合计运费" >
-                                <p>{{order.orderTaking.recive}} 元</p>
+                                <p>{{order.orderTaking.receive}} 元</p>
                             </el-form-item>
                         </el-col>
                     </el-row>
@@ -279,19 +279,20 @@
                 this.listLoading = true;
                 this.order_id = this.$route.query.id;
                 getOrder(this.order_id).then(response => {
+                    debugger
                     this.order = response.data;
                     this.listLoading = false;
                     //步骤
-                    if(this.order.order.status == "ORDER_PLACE"){
+                    if(this.order.orderCustomer.status == "ORDER_PLACE"){
                         this.steps.active = 1;
                         this.steps.time1 = this.order.orderCustomer.time;
                     }
-                    if(this.order.order.status == "ORDER_TAKING"){
+                    if(this.order.orderCustomer.status == "ORDER_TAKING"){
                         this.steps.active = 2;
                         this.steps.time1 = this.order.orderCustomer.time;
                         this.steps.time2 = this.order.orderTaking.time;
                     }
-                    if(this.order.order.status == "ORDER_SIGN"){
+                    if(this.order.orderCustomer.status == "ORDER_SIGN"){
                         this.steps.active = 3;
                         this.steps.time1 = this.order.orderCustomer.time;
                         this.steps.time2 = this.order.orderTaking.time;

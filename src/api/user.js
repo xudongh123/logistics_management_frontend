@@ -1,5 +1,28 @@
 import fetch from '@/api/fetch';
 
+export function userList(params) {
+    return fetch({
+        url: '/user/list',
+        method: 'get',
+        params
+    });
+}
+
+export function addUser(data) {
+    return fetch({
+        url: '/user/add',
+        method: 'post',
+        data
+    });
+}
+
+export function deleteUser(token) {
+    return fetch({
+        url: '/user/delete/' + token,
+        method: 'delete',
+    });
+}
+
 export function CustomerList(params) {
     return fetch({
         url: '/v1/user/manager/ex/customer',

@@ -124,23 +124,23 @@
         methods: {
             fetchData() {
                 this.loading = true;
-                getProfit(this.$route.query.id).then(response => {
-                    this.loading = false;
-                    this.ruleForm.id = response.data.id;
-                    this.ruleForm.pay = response.data.pay;
-                });
-                getDefindAll({type_code:'bank_list'}).then(response => {
-                    this.bank_list = response.data;
-                });
-                getPayCard(this.$route.query.id,{token:localStorage.getItem('company_token')}).then(response => {
-                    this.ruleForm.name = response.data.name;
-                    this.ruleForm.phone = response.data.phone;
-                    this.ruleForm.bank = response.data.bank;
-                    this.ruleForm.card = response.data.card;
-                    this.ruleForm.idCard = response.data.idCard;
-                    this.ruleForm.money = response.data.money;
-                    this.ruleForm.pay = response.data.pay;
-                });
+                // getProfit(this.$route.query.id).then(response => {
+                //     this.loading = false;
+                //     this.ruleForm.id = response.data.id;
+                //     this.ruleForm.pay = response.data.pay;
+                // });
+                // getDefindAll({type_code:'bank_list'}).then(response => {
+                //     this.bank_list = response.data;
+                // });
+                // getPayCard(this.$route.query.id,{token:localStorage.getItem('company_token')}).then(response => {
+                //     this.ruleForm.name = response.data.name;
+                //     this.ruleForm.phone = response.data.phone;
+                //     this.ruleForm.bank = response.data.bank;
+                //     this.ruleForm.card = response.data.card;
+                //     this.ruleForm.idCard = response.data.idCard;
+                //     this.ruleForm.money = response.data.money;
+                //     this.ruleForm.pay = response.data.pay;
+                // });
             },
             submitForm(formName) {
                 this.$refs[formName].validate((valid) => {

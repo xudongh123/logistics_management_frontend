@@ -12,7 +12,7 @@
                             <el-col :span="2"><div style="height:80px; background:#3498db"></div></el-col>
                             <el-col :span="16" style="padding: 10px">
                                 <p>总订单数：</p>
-                                <p style="margin-top:10px; font-size:25px;"><router-link to="/company/home/order" style="color:#50bfff">{{all.order_all}}</router-link></p>
+                                <p style="margin-top:10px; font-size:25px;"><router-link to="/company/home/order" style="color:#50bfff">{{all.totalOrderCount}}</router-link></p>
                             </el-col>
                         </el-row>
                     </el-card>
@@ -23,7 +23,7 @@
                             <el-col :span="2"><div style="height:80px; background:#9b59b6"></div></el-col>
                             <el-col :span="16" style="padding: 10px">
                                 <p>待处理订单数：</p>
-                                <p style="margin-top:10px; font-size:25px;"><router-link to="/company/home/order" style="color:#50bfff">{{all.order_place}}</router-link></p>
+                                <p style="margin-top:10px; font-size:25px;"><router-link to="/company/home/order" style="color:#50bfff">{{all.orderPlaceCount}}</router-link></p>
 
                             </el-col>
                         </el-row>
@@ -35,7 +35,7 @@
                             <el-col :span="2"><div style="height:80px; background:#2ecc71"></div></el-col>
                             <el-col :span="16" style="padding: 10px">
                                 <p>已处理订单数：</p>
-                                <p style="margin-top:10px; font-size:25px;"><router-link to="/company/home/order" style="color:#50bfff">{{all.order_taking}}</router-link></p>
+                                <p style="margin-top:10px; font-size:25px;"><router-link to="/company/home/order" style="color:#50bfff">{{all.orderTakingCount}}</router-link></p>
                             </el-col>
                         </el-row>
                     </el-card>
@@ -46,7 +46,7 @@
                             <el-col :span="2"><div style="height:80px; background:#f1c40f"></div></el-col>
                             <el-col :span="16" style="padding: 10px">
                                 <p>已签收订单数：</p>
-                                <p style="margin-top:10px; font-size:25px;"><router-link to="/company/home/order" style="color:#50bfff">{{all.order_sign}}</router-link></p>
+                                <p style="margin-top:10px; font-size:25px;"><router-link to="/company/home/order" style="color:#50bfff">{{all.orderSignCount}}</router-link></p>
                             </el-col>
                         </el-row>
                     </el-card>
@@ -96,7 +96,11 @@
                 getCompanyAll(this.request).then(response => {
                     this.all = response.data;
                     this.all_Loading = false;
-
+                    debugger
+                    console.log(this.all.orderRefuseCount);
+                    console.log(this.all.orderPlaceCount);
+                    console.log(this.all.orderTakingCount);
+                    console.log(this.all.orderTakingCount);
                     var myChart_pie = echarts.init(document.getElementById('order_pie'),'macarons');
                     // 绘制图表
                     myChart_pie.setOption({
@@ -120,10 +124,10 @@
                                 radius : '70%',
                                 center: ['50%', '60%'],
                                 data:[
-                                    {value:this.all.order_refuse, name:'拒绝订单'},
-                                    {value:this.all.order_place, name:'待处理订单'},
-                                    {value:this.all.order_taking, name:'已处理订单'},
-                                    {value:this.all.order_sign, name:'已签收订单'},
+                                    {value:this.all.orderRefuseCount, name:'拒绝订单'},
+                                    {value:this.all.orderPlaceCount, name:'待处理订单'},
+                                    {value:this.all.orderTakingCount, name:'已处理订单'},
+                                    {value:this.all.orderSignCount, name:'已签收订单'},
                                 ],
                                 itemStyle: {
                                     emphasis: {

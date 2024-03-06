@@ -31,9 +31,9 @@
                 <el-table-column label="收货人" width="250">
                     <template scope="scope">
                         <div style="margin-top:10px;margin-bottom: 10px">
-                            <p>姓名：{{scope.row.orderCustomer.recive_name}}</p>
-                            <p>手机：{{scope.row.orderCustomer.recive_phone}}</p>
-                            <p>地址：{{scope.row.orderCustomer.recive_addr}}</p>
+                            <p>姓名：{{scope.row.orderCustomer.receive_name}}</p>
+                            <p>手机：{{scope.row.orderCustomer.receive_phone}}</p>
+                            <p>地址：{{scope.row.orderCustomer.receive_addr}}</p>
                         </div>
                     </template>
                 </el-table-column>
@@ -74,7 +74,7 @@
                         <div v-if="scope.row.order.status =='ORDER_TAKING' || scope.row.order.status =='ORDER_SIGN'">
                             <p>保险：{{scope.row.orderTaking.safes}} 元</p>
                             <p>运费：{{scope.row.orderTaking.freight}} 元</p>
-                            <p>合计费用：{{scope.row.orderTaking.recive}} 元</p>
+                            <p>合计费用：{{scope.row.orderTaking.receive}} 元</p>
                         </div>
                         <div v-else>
                             <el-tag type="gray" >未处理</el-tag>

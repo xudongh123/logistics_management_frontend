@@ -33,21 +33,21 @@
                 <el-row>
                     <el-col :span="7">
                         <el-form-item label="随车司机姓名">
-                            <el-input v-model="ruleForm.driver_name">
+                            <el-input v-model="ruleForm.driverName">
                                 <el-button slot="append" icon="search" @click="onSelectDriver"></el-button>
                             </el-input>
                         </el-form-item>
                     </el-col>
                     <el-col :span="7">
                         <el-form-item label="随车电话">
-                            <el-input v-model="ruleForm.driver_phone"></el-input>
+                            <el-input v-model="ruleForm.driverPhone"></el-input>
                         </el-form-item>
                     </el-col>
                 </el-row>
                 <el-row>
                     <el-col :span="7">
                         <el-form-item label="挂车车牌">
-                            <el-input v-model="ruleForm.two_plate"></el-input>
+                            <el-input v-model="ruleForm.twoPlate"></el-input>
                         </el-form-item>
                     </el-col>
                 </el-row>
@@ -109,9 +109,9 @@
                         <el-form-item label="出厂日期">
                             <el-date-picker
                                 type="date" placeholder="选择日期"
-                                            :value="ruleForm.factory_time"
-                                            @input="ruleForm.factory_time = day($event)"
-                                            style="width: 100%;" format="yyyy/MM/dd">
+                                            :value="ruleForm.factoryTime"
+                                            @input="ruleForm.factoryTime = $event"
+                                            style="width: 100%;" format="yyyy-MM-dd">
                             </el-date-picker>
                         </el-form-item>
 
@@ -119,14 +119,14 @@
                     <el-col :span="7">
                         <el-form-item label="购买日期">
                             <el-date-picker type="date" placeholder="选择日期"
-                                            :value="ruleForm.buy_time"
-                                            @input="ruleForm.buy_time = day($event)"
-                                            style="width: 100%;" format="yyyy/MM/dd"></el-date-picker>
+                                            :value="ruleForm.buyTime"
+                                            @input="ruleForm.buyTime = $event"
+                                            style="width: 100%;" format="yyyy-MM-dd"></el-date-picker>
                         </el-form-item>
                     </el-col>
                     <el-col :span="7">
                         <el-form-item label="购买价格">
-                            <el-input v-model="ruleForm.buy_price"></el-input>
+                            <el-input v-model="ruleForm.buyPrice"></el-input>
                         </el-form-item>
                     </el-col>
                 </el-row>
@@ -134,38 +134,38 @@
                     <el-col :span="7">
                         <el-form-item label="年审日期">
                             <el-date-picker type="date" placeholder="选择日期"
-                                            :value="ruleForm.limited_time"
-                                            @input="ruleForm.limited_time = day($event)"
-                                            style="width: 100%;" format="yyyy/MM/dd"></el-date-picker>
+                                            :value="ruleForm.limitedTime"
+                                            @input="ruleForm.limitedTime = $event"
+                                            style="width: 100%;" format="yyyy-MM-dd"></el-date-picker>
                         </el-form-item>
                     </el-col>
-                    <el-col :span="7">
+                    <!-- <el-col :span="7">
                         <el-form-item label="二级维护有效期">
 
                             <el-date-picker type="date" placeholder="选择日期"
-                                            :value="ruleForm.tow_maintain_time"
-                                            @input="ruleForm.tow_maintain_time = day($event)"
+                                            :value="ruleForm.towMaintainTime"
+                                            @input="ruleForm.towMaintainTime = day($event)"
                                             style="width: 100%;" format="yyyy/MM/dd"></el-date-picker>
                         </el-form-item>
-                    </el-col>
-                    <el-col :span="7">
+                    </el-col> -->
+                    <!-- <el-col :span="7">
                         <el-form-item label="保险单号">
                             <el-input v-model="ruleForm.insurance_policy"></el-input>
                         </el-form-item>
-                    </el-col>
+                    </el-col> -->
                 </el-row>
                 <el-row>
-                    <el-col :span="7">
+                    <!-- <el-col :span="7">
                         <el-form-item label="保险公司">
                             <el-input v-model="ruleForm.insurance_company"></el-input>
                         </el-form-item>
-                    </el-col>
+                    </el-col> -->
                     <el-col :span="7">
                         <el-form-item label="保险有效期">
                             <el-date-picker type="date" placeholder="选择日期"
-                                            :value="ruleForm.insurance_time"
-                                            @input="ruleForm.insurance_time = day($event)"
-                                            style="width: 100%;" format="yyyy/MM/dd"></el-date-picker>
+                                            :value="ruleForm.insuranceTime"
+                                            @input="ruleForm.insuranceTime = $event"
+                                            style="width: 100%;" format="yyyy-MM-dd"></el-date-picker>
                         </el-form-item>
                     </el-col>
                 </el-row>
@@ -209,7 +209,7 @@
                         </el-form-item>
                     </el-col>
                 </el-row>
-
+<!-- 
                 <el-row>
                     <el-col :span="21">
                         <el-row v-for="(license, index) in ruleForm.license">
@@ -297,7 +297,7 @@
                             </el-card>
                         </el-row>
                     </el-col>
-                </el-row>
+                </el-row> -->
 
                 <!-- <el-form-item style="margin-top: 30px">
                 <el-button @click="addLicense" icon="plus"  type="info">新增证件</el-button>
@@ -316,8 +316,8 @@
 </template>
 <script>
     import { addCar } from '@/api/car';
-    import { getDefindAll } from "@/api/system";
-    import { getUploadToken } from '@/api/util.js'
+    // import { getDefindAll } from "@/api/system";
+    // import { getUploadToken } from '@/api/util.js'
     import { parseTime } from '@/utils/time';
     import MyDriverChoise from "@/components/public/fleet/DriverChoiseDialog.vue";
 
@@ -331,9 +331,9 @@
                     plate: '',
                     type: '',
                     resource: '',
-                    two_plate: '',
-                    driver_phone: '',
-                    driver_name: '',
+                    twoPlate: '',
+                    driverPhone: '',
+                    driverName: '',
                     energy: '',
                     length: '',
                     weight: '',
@@ -343,18 +343,15 @@
                     axle: '',
                     wheelbase: '',
                     tire: '',
-                    factory_time: null,
-                    buy_time: null,
-                    buy_price: '',
-                    limited_time: null,
-                    tow_maintain_time: null,
-                    insurance_policy: '',
-                    insurance_company: '',
-                    insurance_time: null,
-                    front_img: [],
-                    tail_img: [],
+                    factoryTime: null,
+                    buyTime: null,
+                    buyPrice: '',
+                    limitedTime: null,
+                    //towMaintainTime: null,
+                    //insurancePolicy: '',
+                    //insuranceCompany: '',
+                    //insuranceTime: null,
                     remark: '',
-                    license:[],
                     token: localStorage.getItem('company_token')
                 },
                 rules: {
@@ -402,27 +399,27 @@
                 // getDefindAll({type_code:'car_license_type'}).then(response => {
                 //     this.car_license_type = response.data;
                 // });
-                getUploadToken().then(response => {
-                    this.uploadToken.token = response.data;
-                });
+                // getUploadToken().then(response => {
+                //     this.uploadToken.token = response.data;
+                // });
             },
-            removeLicense(item) {
-                var index = this.ruleForm.license.indexOf(item)
-                if (index !== -1) {
-                    this.ruleForm.license.splice(index, 1)
-                }
-            },
-            addLicense() {
-                this.ruleForm.license.push({
-                    number: '',
-                    type: '',
-                    pass_time: null,
-                    valid_date: null,
-                    unvalide_date: null,
-                    files: [],
-                    remark: ''
-                });
-            },
+            // removeLicense(item) {
+            //     var index = this.ruleForm.license.indexOf(item)
+            //     if (index !== -1) {
+            //         this.ruleForm.license.splice(index, 1)
+            //     }
+            // },
+            // addLicense() {
+            //     this.ruleForm.license.push({
+            //         number: '',
+            //         type: '',
+            //         pass_time: null,
+            //         valid_date: null,
+            //         unvalide_date: null,
+            //         files: [],
+            //         remark: ''
+            //     });
+            // },
             submitForm(formName) {
                 this.$refs[formName].validate((valid) => {
                     if (valid) {
@@ -453,37 +450,37 @@
                 this.ruleForm.driver_name = row.fleetDriver.name;
                 this.ruleForm.driver_phone = row.fleetDriver.phone;
             },
-            tailImgSuccess(res, file) {
-                this.ruleForm.tail_img.push({
-                    name: file.name,
-                    url: 'http://otj3hc8no.bkt.clouddn.com/'+ res.key
-                });
-            },
-            frontImgSuccess(res, file) {
-                this.ruleForm.front_img.push({
-                    name: file.name,
-                    url: 'http://otj3hc8no.bkt.clouddn.com/'+ res.key
-                });
-            },
-            fileImgSuccess(res, file) {
-                this.ruleForm.license[this.license_img_click].files.push({
-                    name: file.name,
-                    url: 'http://otj3hc8no.bkt.clouddn.com/'+ res.key
-                });
-            },
+            // tailImgSuccess(res, file) {
+            //     this.ruleForm.tail_img.push({
+            //         name: file.name,
+            //         url: 'http://otj3hc8no.bkt.clouddn.com/'+ res.key
+            //     });
+            // },
+            // frontImgSuccess(res, file) {
+            //     this.ruleForm.front_img.push({
+            //         name: file.name,
+            //         url: 'http://otj3hc8no.bkt.clouddn.com/'+ res.key
+            //     });
+            // },
+            // fileImgSuccess(res, file) {
+            //     this.ruleForm.license[this.license_img_click].files.push({
+            //         name: file.name,
+            //         url: 'http://otj3hc8no.bkt.clouddn.com/'+ res.key
+            //     });
+            // },
             fileImgSuccessc(index){
                 this.license_img_click = index;
             },
-            day(val){
-                if(val == null)
-                    return null;
-                return parseTime(val,"{y}/{m}/{d}");
-            }
+            // day(val){
+            //     if(val == null)
+            //         return null;
+            //     return parseTime(val,"{y}/{m}/{d}");
+            // }
         },
         filters: {
-            day: function (value) {
-                return parseTime(value,"{y}/{m}/{d}");
-            }
+            // day: function (value) {
+            //     return parseTime(value,"{y}/{m}/{d}");
+            // }
         }
     }
 </script>
