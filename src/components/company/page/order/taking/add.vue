@@ -205,12 +205,12 @@ export default {
     },
     data() {
         return {
-            mtoken: localStorage.getItem("companyToken"),
+            mtoken: localStorage.getItem("token"),
             listLoading: false,
             order_id: this.$route.query.id,
             order: {},
             taking: {
-                token: localStorage.getItem("companyToken"),
+                token: localStorage.getItem("token"),
                 id: this.$route.query.id,
                 receive: 0,
                 pay: 0,

@@ -40,11 +40,11 @@
                     ]
                 },
                 listLoading: false,
-                dialogFormVisible: false,
-                msgButton:'',
-                msgCount:0,
-                msgVisible:false,
-                mInterval:null,
+                //dialogFormVisible: false,
+                //msgButton:'',
+                //msgCount:0,
+                //msgVisible:false,
+                //mInterval:null,
             }
         },
         methods: {
@@ -59,8 +59,9 @@
                                         message: '登录成功!'
                                     });
                                     localStorage.setItem('username', this.ruleForm.username);
-                                    localStorage.setItem('companyToken', response.data.token);
-                                    localStorage.setItem('type', 'company');
+                                    localStorage.setItem('token', response.data.token);
+                                    localStorage.setItem('permissionLevel', response.data.permissionLevel);
+                                    //localStorage.setItem('type', 'company');
                                     this.$router.push('/company/home');
                                 },
                                 error => {

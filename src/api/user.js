@@ -101,3 +101,11 @@ export function login(data) {
         data
     });
 }
+
+export function getInfo(params) {
+    return fetch({
+        url: '/v1/user/customer/ex/info',
+        method: 'get',
+        params
+    });
+}

@@ -77,7 +77,7 @@
         data() {
             return {
                 request:{
-                    token: localStorage.getItem('companyToken')
+                    token: localStorage.getItem('token')
                 },
                 all_Loading: false,
                 all:{},

@@ -101,14 +101,14 @@
                 listQuery:{
                     offset: 0,
                     pageSize: 10,
-                    token:localStorage.getItem('companyToken')
+                    token:localStorage.getItem('token')
                 },
                 refuseForm:{
-                    token:localStorage.getItem('companyToken'),
+                    token:localStorage.getItem('token'),
                     fk_order_customer_id:''
                 },
                 signForm:{
-                    token:localStorage.getItem('companyToken'),
+                    token:localStorage.getItem('token'),
                     fk_order_customer_id:'',
                     order_img:''
                 },

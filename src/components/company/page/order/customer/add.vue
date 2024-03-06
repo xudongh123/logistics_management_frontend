@@ -243,7 +243,7 @@
                     goods: [],
                     isCompany:false,
                     //fkWantCompanyId:null,
-                    token: localStorage.getItem('companyToken'),
+                    token: localStorage.getItem('token'),
                 },
                 rules: {
                     sendName: [

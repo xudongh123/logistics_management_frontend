@@ -22,8 +22,25 @@
 <script>
     export default {
         data() {
-            return {
-                items: [
+            let userManage = {
+                                icon: 'el-icon-menu',
+                                title: '账户管理',
+                                index: '4',
+                                subs: [
+                                    {
+                                        icon: 'el-icon-star-on',
+                                        index: '/company/home/account',
+                                        title: '个人中心'
+                                    }
+                                ]
+                            }
+            if (localStorage.getItem('permissionLevel') == 0) {
+                userManage.subs.push({
+                                    index: '/company/home/accountList',
+                                    title: '账户列表'
+                                });
+            }
+            let items = [
                     {
                         icon: 'el-icon-menu',
                         index: '/company/home',
@@ -54,11 +71,6 @@
                             index: '/company/home/order/add',
                             title: '创建货单',
                             },
-                            // {
-                            //     icon: 'el-icon-star-off',
-                            //     index: '/company/home/order_open',
-                            //     title: '抢单市场',
-                            // },
                             {
                                 icon: 'el-icon-star-on',
                                 index: '/company/home/order',
@@ -70,34 +82,11 @@
                         icon: 'el-icon-share',
                         index: '/company/home/profit',
                         title: '费用跟踪'
-                    },
-                    {
-                        icon: 'el-icon-menu',
-                        title: '账户管理',
-                        index: '4',
-                        subs: [
-                            {
-                                icon: 'el-icon-star-on',
-                                index: '/company/home/account',
-                                title: '个人中心'
-                            },
-                            {
-                                index: '/company/home/accountList',
-                                title: '账户列表'
-                            },
-                            // {
-                            //     icon: 'el-icon-plus',
-                            //     index: '/company/home/recharge',
-                            //     title: '账户充值'
-                            // }
-                        ]
                     }
-                    // {
-                    //     icon: 'el-icon-setting',
-                    //     index: '/company/home/system/config',
-                    //     title: '系统设置'
-                    // }
                 ]
+            items.push(userManage);
+            return {
+                items
             }
         },
         computed:{

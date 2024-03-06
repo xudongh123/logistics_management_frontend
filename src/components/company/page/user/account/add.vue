@@ -75,7 +75,7 @@
                     password: '',
                     sex: '',
                     permissionLevel: '',
-                    //token: localStorage.getItem('companyToken')
+                    //token: localStorage.getItem('token')
                 },
                 rules: {
                     username: [
@@ -89,7 +89,7 @@
                     // ]
                 },
                 listLoading: false
-                //:localStorage.getItem('companyToken')
+                //:localStorage.getItem('token')
 
             };
         },

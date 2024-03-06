@@ -178,13 +178,13 @@
                 listQuery:{
                     offset: 0,
                     pageSize: 10,
-                    token:localStorage.getItem('companyToken')
+                    token:localStorage.getItem('token')
                 },
                 refuseForm:{
-                    token:localStorage.getItem('companyToken'),
+                    token:localStorage.getItem('token'),
                 },
                 signForm:{
-                    token:localStorage.getItem('companyToken'),
+                    token:localStorage.getItem('token'),
                 },
                 dialogFormVisible:false,
                 imagePercente: 0,

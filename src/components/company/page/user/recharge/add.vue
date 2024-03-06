@@ -60,7 +60,7 @@
             return {
                 Loading: false,
                 LoadingParam:{
-                    token: localStorage.getItem('companyToken')
+                    token: localStorage.getItem('token')
                 },
                 rechargeForm: {
                     fk_user_id: '',

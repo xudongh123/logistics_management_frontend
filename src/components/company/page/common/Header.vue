@@ -15,31 +15,29 @@
     </div>
 </template>
 <script>
-    import { getInfo } from '@/api/user/customer.js'
+    import { getInfo } from '@/api/user'
     export default {
         data() {
             return {
                 name: '未命名',
                 nickname: localStorage.getItem('username'),
-                img: '',
                 loadingParam: {
-                    token: localStorage.getItem('companyToken')
+                    token: localStorage.getItem('token')
                 }
             }
         },
-        // created(){
-        //     getInfo(this.loadingParam).then(response => {
-        //         this.img = response.data.userInfo.img;
-        //         if(response.data.userInfo.nickname){
-        //             this.nickname = response.data.userInfo.nickname;
-        //         }
-        //     });
-        // },
+        created(){
+            getInfo(this.loadingParam).then(response => {
+                if(response.data.nickname){
+                    this.nickname = response.data.nickname;
+                }
+            });
+        },
         methods:{
             handleCommand(command) {
                 if(command == 'loginout'){
                     localStorage.removeItem('username')
-                    localStorage.removeItem('companyToken')
+                    localStorage.removeItem('token')
                     localStorage.removeItem('type')
                     this.$router.push('/login');
                 }
