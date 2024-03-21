@@ -1,60 +1,46 @@
 <template>
+    <!-- 加载动画组件 -->
     <el-row v-loading.body="Loading" element-loading-text="请稍后...">
+        
+        <!-- 面包屑导航 -->
         <el-breadcrumb separator="/">
             <el-breadcrumb-item :to="{ path: '../home' }">首页</el-breadcrumb-item>
             <el-breadcrumb-item>个人中心</el-breadcrumb-item>
         </el-breadcrumb>
 
+        <!-- 表单内容 -->
         <el-row style="margin-top: 50px">
             <el-form :model="userForm" :rules="rules" ref="userForm" label-width="150px" class="demo-ruleForm">
 
                 <el-row>
                     <el-col :span="8">
                         <el-row>
+                            <!-- 账户名输入框 -->
                             <el-form-item label="账户名">
                                 <el-input v-model="userForm.username" :disabled="true"></el-input>
                             </el-form-item>
                         </el-row>
-                        <!-- <el-row>
-                            <el-form-item label="头像">
-                                <el-upload
-                                    class="avatar-uploader"
-                                    action="http://upload-z2.qiniu.com"
-                                    :data="uploadToken"
-                                    :show-file-list="false"
-                                    :on-success="handleAvatarSuccess"
-                                    :before-upload="beforeAvatarUpload"
-                                    :on-progress="progressUpload">
-                                    <img v-if="userInfoForm.img" :src="userInfoForm.img" class="avatar">
-                                    <i v-else class="el-icon-plus avatar-uploader-icon"></i>
-                                </el-upload>
-                                <el-progress :text-inside="true" :stroke-width="18" :percentage="imagePercente" style="width: 200px"></el-progress>
-                            </el-form-item>
-                        </el-row> -->
-
+                        
                         <el-row>
+                            <!-- 昵称输入框 -->
                             <el-form-item label="昵称">
                                 <el-input v-model="userForm.nickname"></el-input>
                             </el-form-item>
+                            <!-- 性别单选框 -->
                             <el-form-item label="性别" prop="sex">
                                 <el-radio-group v-model="userForm.sex">
                                     <el-radio class="radio" label="男"></el-radio>
                                     <el-radio class="radio" label="女"></el-radio>
                                 </el-radio-group>
                             </el-form-item>
-                            <!-- <el-form-item label="公司名称" prop="company">
-                                <el-input v-model="userForm.company"></el-input>
-                            </el-form-item> -->
+                            <!-- 公司名称输入框，注释部分 -->
                         </el-row>
                     </el-col>
 
-                    <!-- <el-col :span="8" :offset="1">
-                        <el-form-item label="账户余额:">
-                            <p style="font-size:25px">{{userInfoForm.money}} 元</p>
-                        </el-form-item>
-                    </el-col> -->
+                    <!-- 右侧内容，注释部分 -->
                 </el-row>
 
+                <!-- 按钮操作 -->
                 <el-form-item>
                     <el-button type="primary" @click="submitForm('userForm')" icon="upload">更新账户</el-button>
                     <el-button type="warning" @click="showPasswordDialog" icon="edit">修改密码</el-button>
@@ -62,6 +48,7 @@
             </el-form>
         </el-row>
 
+        <!-- 修改密码对话框 -->
         <el-dialog title="重置密码" :visible.sync="dialogPasswordVisible">
             <el-form :model="passwordForm">
                 <el-form-item label="旧密码">
@@ -78,7 +65,9 @@
         </el-dialog>
     </el-row>
 </template>
+
 <script>
+    // 引入接口和工具函数
     import { getInfo,updateInfo,updatePassword } from '@/api/user'
     import { parseTime } from '@/utils/time'
 
@@ -89,20 +78,6 @@
                 LoadingParam:{
                     token: localStorage.getItem('token')
                 },
-                // uploadToken: {
-                //     token:''
-                // },
-                // userInfoForm: {
-                //     id: '',
-                //     user_id: '',
-                //     nickname: '',
-                //     sex: '',
-                //     img: '',
-                //     birthday: '',
-                //     company: '',
-                //     money: 0,
-                //     token: '',
-                // },
                 userForm: {
                     username: '',
                     nickname: '',
@@ -131,6 +106,7 @@
         methods: {
             loadForm(){
                 this.Loading = true;
+                // 获取用户信息
                 getInfo(this.LoadingParam).then(response => {
                     this.userForm = response.data;
                     this.userForm.token = localStorage.getItem('token');
@@ -139,6 +115,7 @@
 
             },
             submitForm(formName) {
+                // 表单验证与提交
                 this.$refs[formName].validate((valid) => {
                     if (valid) {
                         this.listLoading = true;
@@ -162,6 +139,7 @@
                 this.dialogPasswordVisible = true;
             },
             password(){
+                // 密码验证和修改
                 if (this.userForm.password !== this.passwordForm.oldPassword) {
                     this.$message({
                         type: 'error',
@@ -188,6 +166,7 @@
 
 
 <style>
+    /* 头像上传样式 */
     .avatar-uploader .el-upload {
         border: 1px dashed #d9d9d9;
         border-radius: 6px;

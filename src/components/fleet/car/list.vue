@@ -1,23 +1,29 @@
+<!-- 面包屑导航，用于展示页面路径 -->
 <template>
     <el-row>
         <el-row>
+            <!-- 面包屑导航项，点击跳转到首页 -->
             <el-breadcrumb separator="/">
                 <el-breadcrumb-item :to="{ path: '../home' }">首页</el-breadcrumb-item>
                 <el-breadcrumb-item>车辆管理</el-breadcrumb-item>
             </el-breadcrumb>
         </el-row>
 
+        <!-- 添加车辆按钮 -->
         <el-row style="margin-top: 10px">
             <el-button style="float: right;" type="primary" @click="createData()">添加车辆</el-button>
         </el-row>
 
+        <!-- 车辆列表展示表格 -->
         <el-row style="margin-top: 10px">
             <el-table :data="list" v-loading.body="listLoading" element-loading-text="拼命加载中" border fit
                       highlight-current-row style="width: 100%">
                 <el-table-column type="expand">
+                    <!-- 展开行显示的内容 -->
                     <template scope="props">
                         <el-form label-position="left" class="demo-table-expand">
                             <el-col :span="8">
+                                <!-- 车辆信息展示 -->
                                 <el-form-item label="车牌号">
                                     <span>{{ props.row.plate }}</span>
                                 </el-form-item>
@@ -86,6 +92,7 @@
                         </el-form>
                     </template>
                 </el-table-column>
+                <!-- 列配置 -->
                 <el-table-column prop="plate" label="车牌号"/>
                 <el-table-column prop="type" label="车辆类型"/>
                 <el-table-column prop="brand" label="车辆品牌"/>
@@ -106,15 +113,16 @@
                 <el-table-column label="操作" width="180">
                     <template scope="scope">
 
-                            <el-button-group>
-                                <!--<el-button type="primary" icon="edit" size="small">编辑</el-button>-->
-                                <el-button type="danger" @click="deleteData(scope.row.id)" icon="delete" size="small">删除</el-button>
-                            </el-button-group>
+                        <el-button-group>
+                            <!-- 删除按钮 -->
+                            <el-button type="danger" @click="deleteData(scope.row.id)" icon="delete" size="small">删除</el-button>
+                        </el-button-group>
                     </template>
                 </el-table-column>
             </el-table>
         </el-row>
 
+        <!-- 分页组件 -->
         <el-row type="flex" justify="space-around" style="margin-top: 30px">
             <el-pagination
                 @size-change="handleSizeChange"
@@ -128,6 +136,7 @@
     </el-row>
 </template>
 
+<!-- 页面脚本部分 -->
 <script>
     import { getCarList, deleteCar } from '@/api/car';
     import { parseTime } from '@/utils/time';
@@ -135,6 +144,7 @@
     export default {
         data() {
             return {
+                // 列表数据和分页信息
                 list: null,
                 total: 0,
                 listLoading: true,
@@ -146,9 +156,11 @@
             }
         },
         created() {
+            // 初始化页面数据
             this.fetchData();
         },
         methods: {
+            // 获取车辆列表数据
             fetchData() {
                 this.listLoading = true;
                 getCarList(this.listQuery).then(response => {
@@ -157,12 +169,15 @@
                     this.listLoading = false;
                 });
             },
+            // 删除车辆信息
             deleteData(id) {
+                // 弹出确认对话框
                 this.$confirm('此操作将删除该车辆, 是否继续?', '提示', {
                     confirmButtonText: '确定',
                     cancelButtonText: '取消',
                     type: 'warning'
                 }).then(() => {
+                    // 执行删除操作
                     deleteCar(id).then(response => {
                         this.$message({
                             type: 'success',
@@ -172,24 +187,29 @@
                     });
                 });
             },
+            // 跳转到添加车辆页面
             createData(){
                 this.$router.push('/home/car/add');
             },
+            // 处理每页显示数量变化
             handleSizeChange(val) {
                 this.listQuery.pageSize = val;
                 this.fetchData();
             },
+            // 处理当前页变化
             handleCurrentChange(val) {
                 this.listQuery.offset = this.listQuery.pageSize * (val -1);
                 this.fetchData();
             }
         },
         filters: {
+            // 时间格式化过滤器
             time: function (value) {return parseTime(value, "{y}年{m}月{d}日 {hh}:{mm}:{ss}");}
         }
     };
 </script>
 
+<!-- 页面样式 -->
 <style>
     .demo-table-expand {
         font-size: 0;

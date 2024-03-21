@@ -1,18 +1,17 @@
+<!-- 模板部分 -->
 <template>
     <el-row
         v-loading.body="listLoading"
         element-loading-text="正在操作，请稍后..."
     >
+        <!-- 面包屑导航 -->
         <el-breadcrumb separator="/">
-            <el-breadcrumb-item :to="{ path: '../../home' }"
-                >首页</el-breadcrumb-item
-            >
-            <el-breadcrumb-item :to="{ path: '../order_manager' }"
-                >运单管理</el-breadcrumb-item
-            >
+            <el-breadcrumb-item :to="{ path: '../../home' }">首页</el-breadcrumb-item>
+            <el-breadcrumb-item :to="{ path: '../order_manager' }">运单管理</el-breadcrumb-item>
             <el-breadcrumb-item>派车</el-breadcrumb-item>
         </el-breadcrumb>
 
+        <!-- 步骤条 -->
         <el-row style="margin-top: 30px">
             <el-row type="flex" justify="center">
                 <el-steps :space="300" :active="2">
@@ -22,8 +21,10 @@
                 </el-steps>
             </el-row>
 
+            <!-- 寄件人和收件人信息卡片 -->
             <el-card class="box-card" style="margin-top: 30px">
                 <el-form label-width="150px">
+                    <!-- 寄件人信息 -->
                     <el-row>
                         <el-col :span="8">
                             <el-form-item label="寄件人姓名">
@@ -97,6 +98,7 @@
                 </el-form>
             </el-card>
 
+            <!-- 货物信息表格 -->
             <el-card class="box-card" style="margin-top: 30px">
                 <el-form
                     :model="taking"
@@ -123,7 +125,7 @@
                             </template>
                         </el-table-column>
                     </el-table>
-
+                    
                     <el-input
                         v-model="taking.fk_driver_id"
                         type="hidden"
@@ -189,12 +191,14 @@
         </el-row>
     </el-row>
 </template>
+
+<!-- 脚本部分 -->
 <script>
 import { getOrder, takingOrder } from "@/api/order";
 import { parseTime } from "@/utils/time";
 
 export default {
-
+    // 数据部分
     data() {
         return {
             mtoken: localStorage.getItem("token"),
@@ -222,6 +226,7 @@ export default {
     created() {
         this.fetchData();
     },
+    // 方法部分
     methods: {
         fetchData() {
             this.listLoading = true;
@@ -256,6 +261,7 @@ export default {
             });
         },
     },
+    // 过滤器部分
     filters: {
         time: function (value) {
             return parseTime(value);
@@ -264,6 +270,7 @@ export default {
             return parseTime(value, "{y}年{m}月{d}日");
         },
     },
+    // 计算属性部分
     computed: {
         // receive: function () {
         //     debugger

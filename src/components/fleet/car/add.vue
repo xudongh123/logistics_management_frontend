@@ -1,13 +1,19 @@
+<!--
+模板结构，包括面包屑导航和表单内容
+-->
 <template>
     <el-row v-loading.body="listLoading" element-loading-text="正在提交，请稍后...">
+        <!-- 面包屑导航 -->
         <el-breadcrumb separator="/">
             <el-breadcrumb-item :to="{ path: '../../home' }">首页</el-breadcrumb-item>
             <el-breadcrumb-item :to="{ path: '../car' }">车辆管理</el-breadcrumb-item>
             <el-breadcrumb-item>增加车辆</el-breadcrumb-item>
         </el-breadcrumb>
 
+        <!-- 表单内容 -->
         <el-col style="margin-top: 50px">
             <el-form :model="ruleForm" :rules="rules" ref="ruleForm" label-width="120px" class="demo-ruleForm">
+                <!-- 车牌号和车辆类型 -->
                 <el-row>
                     <el-col :span="7">
                         <el-form-item label="车牌号" prop="plate">
@@ -20,6 +26,7 @@
                         </el-form-item>
                     </el-col>
                 </el-row>
+                <!-- 车辆所属 -->
                 <el-row>
                     <el-col :span="7">
                         <el-form-item label="车辆所属" prop="resource">
@@ -30,12 +37,11 @@
                         </el-form-item>
                     </el-col>
                 </el-row>
+                <!-- 随车司机信息 -->
                 <el-row>
                     <el-col :span="7">
                         <el-form-item label="随车司机姓名" prop="driverName">
-                            <el-input v-model="ruleForm.driverName">
-                                <!-- <el-button slot="append" icon="search" @click="onSelectDriver"></el-button> -->
-                            </el-input>
+                            <el-input v-model="ruleForm.driverName"></el-input>
                         </el-form-item>
                     </el-col>
                     <el-col :span="7">
@@ -44,12 +50,15 @@
                         </el-form-item>
                     </el-col>
                 </el-row>
+                <!-- 其他车辆信息 -->
                 <el-row>
                     <el-col :span="7">
                         <el-form-item label="挂车车牌">
                             <el-input v-model="ruleForm.twoPlate"></el-input>
                         </el-form-item>
                     </el-col>
+                    <!-- 更多车辆信息 -->
+                    <!-- ... -->
                 </el-row>
                 <el-row>
                     <el-col :span="7">
@@ -164,7 +173,6 @@
                 </el-form-item>
             </el-form>
         </el-col>
-
     </el-row>
 </template>
 <script>
@@ -173,7 +181,9 @@
     export default {
         data() {
             return {
+                // 表单数据
                 ruleForm: {
+                    // 表单字段...
                     plate: '',
                     type: '',
                     resource: '',
@@ -197,7 +207,9 @@
                     remark: '',
                     token: localStorage.getItem('token')
                 },
+                // 表单验证规则
                 rules: {
+                    // 验证规则...
                     plate: [
                         {required: true, message: '请输入车牌'}
                     ],
@@ -218,7 +230,9 @@
             };
         },
         methods: {
+            // 提交表单
             submitForm(formName) {
+                // 表单验证...
                 this.$refs[formName].validate((valid) => {
                     if (valid) {
                         this.listLoading = true;
@@ -238,11 +252,13 @@
                     }
                 });
             },
+            // 重置表单
             resetForm(formName) {
                 this.$refs[formName].resetFields();
             }
         },
         filters: {
+            // 过滤器...
             // day: function (value) {
             //     return parseTime(value,"{y}/{m}/{d}");
             // }

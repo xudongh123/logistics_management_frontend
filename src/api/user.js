@@ -41,7 +41,7 @@ export function getInfo(params) {
 
 export function updateInfo(data) {
     return fetch({
-        url: '/v1/user/info',
+        url: '/user/info',
         method: 'post',
         data
     });

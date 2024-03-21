@@ -1,11 +1,15 @@
 <template>
+    <!-- el-row 行布局组件 -->
     <el-row>
         <el-row>
+            <!-- el-breadcrumb 面包屑导航组件 -->
             <el-breadcrumb separator="/">
                 <el-breadcrumb-item>首页</el-breadcrumb-item>
             </el-breadcrumb>
 
-            <el-row style="margin-top: 20px" :gutter="20"  v-loading.body="all_Loading" element-loading-text="请稍后...">
+            <!-- el-row 嵌套 el-col，展示订单统计信息 -->
+            <el-row style="margin-top: 20px" :gutter="20" v-loading.body="all_Loading" element-loading-text="请稍后...">
+                <!-- el-col 列布局组件 -->
                 <el-col :span="6">
                     <el-card class="box-card" :body-style="{ padding: '0px' }">
                         <el-row>
@@ -53,6 +57,7 @@
                 </el-col>
             </el-row>
 
+            <!-- el-row 展示订单数据图表 -->
             <el-row>
                 <el-card class="box-card" style="margin-top: 20px">
                     <div id="order_day7" style="height: 400px"></div>
@@ -69,6 +74,7 @@
 </template>
 
 <script>
+    // 引入相关依赖及样式
     import { getOrderCount, getOrderCount7Day } from '@/api/order'
     import echarts from 'echarts'
     require('echarts/theme/macarons');
@@ -76,6 +82,7 @@
     export default {
         data() {
             return {
+                // 数据及状态初始化
                 request:{
                     token: localStorage.getItem('token')
                 },
@@ -85,19 +92,24 @@
             }
         },
         created() {
+            // 组件创建时执行
         },
         mounted(){
+            // 组件挂载完成后执行初始化方法
             this.initAll();
             this.initOrderDay7();
         },
         methods:{
+            // 初始化所有订单数据
             initAll(){
+                // 发起请求获取订单数据
                 this.all_Loading = true;
                 getOrderCount(this.request).then(response => {
+                    // 处理返回数据并渲染echarts图表
                     this.all = response.data;
                     this.all_Loading = false;
                     var myChart_pie = echarts.init(document.getElementById('order_pie'),'macarons');
-                    // 绘制图表
+                    // 绘制饼图
                     myChart_pie.setOption({
                         title : {
                             text: '订单分布比例',
@@ -136,8 +148,11 @@
                     });
                 });
             },
+            // 初始化最近7天订单数据
             initOrderDay7(){
+                // 发起请求获取最近7天订单数据
                 getOrderCount7Day(this.request).then(response => {
+                    // 处理返回数据并渲染echarts图表
                     this.order_day7 = response.data;
                     var myChart = echarts.init(document.getElementById('order_day7'),'macarons');
                     // 绘制图表

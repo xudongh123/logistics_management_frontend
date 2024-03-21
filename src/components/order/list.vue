@@ -1,5 +1,6 @@
 <template>
     <el-row>
+        <!-- 面包屑导航 -->
         <el-row>
             <el-breadcrumb separator="/">
                 <el-breadcrumb-item :to="{ path: '../home' }">货单管理</el-breadcrumb-item>
@@ -7,19 +8,22 @@
             </el-breadcrumb>
         </el-row>
 
+        <!-- 数据列表展示 -->
         <el-row style="margin-top: 10px">
             <el-table :data="list" v-loading.body="listLoading" element-loading-text="拼命加载中" border fit
                       highlight-current-row style="width: 100%">
+                <!-- 序号列 -->
                 <el-table-column fixed
                                  type="index"
                                  width="50">
                 </el-table-column>
+                <!-- 订单号列 -->
                 <el-table-column label="订单号" width="300">
                     <template scope="scope">
                         {{ scope.row.orderNumber }}
-                        <!-- <el-button type="text" @click="onOrder(scope.row.id)">{{ scope.row.orderNumber }}</el-button> -->
                     </template>
                 </el-table-column>
+                <!-- 发货人信息列 -->
                 <el-table-column label="发货人" width="250">
                     <template scope="scope">
                         <div style="margin-top:10px;margin-bottom: 10px">
@@ -29,6 +33,7 @@
                         </div>
                     </template>
                 </el-table-column>
+                <!-- 收货人信息列 -->
                 <el-table-column label="收货人" width="250">
                     <template scope="scope">
                         <div style="margin-top:10px;margin-bottom: 10px">
@@ -38,53 +43,24 @@
                         </div>
                     </template>
                 </el-table-column>
-                <el-table-column
-                    label="订单状态" width="150">
+                <!-- 订单状态列 -->
+                <el-table-column label="订单状态" width="150">
                     <template scope="scope">
                         <el-tag type="gray" v-show="scope.row.status ==='ORDER_PLACE'">未处理</el-tag>
                         <el-tag type="primary" v-show="scope.row.status ==='ORDER_TAKING'">运输中</el-tag>
                         <el-tag type="success" v-show="scope.row.status ==='ORDER_SIGN'">已签收</el-tag>
                         <el-tag type="danger" v-show="scope.row.status ==='ORDER_REFUSE'">已拒绝</el-tag>
-
                     </template>
                 </el-table-column>
-                <el-table-column
-                    label="时间" width="300">
+                <!-- 时间信息列 -->
+                <el-table-column label="时间" width="300">
                     <template scope="scope" >
                         <p><el-tag type="gray">下单时间：{{scope.row.time|time}}</el-tag></p>
                         <p><el-tag type="primary">预计发货：{{scope.row.sendTime|time}}</el-tag></p>
                         <p><el-tag type="success">预计送达：{{scope.row.receiveTime|time}}</el-tag></p>
-                        <!-- <div v-if="scope.row.status =='ORDER_TAKING' || scope.row.status =='ORDER_SIGN'">
-                            <p>应收账款：{{scope.row.receive}} 元</p>
-                            <p>应付账款：{{scope.row.pay}} 元</p>
-                        </div>
-                        <div v-else>
-                            <el-tag type="gray" >未处理</el-tag>
-                        </div> -->
                     </template>
                 </el-table-column>
-
-                <!-- <el-table-column
-                    label="时间" width="250">
-                    <template scope="scope" >
-                        <p><el-tag type="gray">下单时间：{{scope.row.time|time}}</el-tag></p>
-                        <div v-if="scope.row.status ==='ORDER_REFUSE'">
-                            <p><el-tag type="gray">下单时间：{{scope.row.time|time}}</el-tag></p>
-                        </div>
-                        <div v-if="scope.row.status ==='ORDER_PLACE'">
-                            <p><el-tag type="gray">下单时间：{{scope.row.time|time}}</el-tag></p>
-                        </div>
-                        <div v-if="scope.row.status ==='ORDER_TAKING'">
-                            <p><el-tag type="gray">下单时间：{{scope.row.time|time}}</el-tag></p>
-                            <p><el-tag type="primary">处理时间：{{scope.row.time|time}}</el-tag></p>
-                        </div>
-                        <div v-if="scope.row.status ==='ORDER_SIGN'">
-                            <p><el-tag type="gray">下单时间：{{scope.row.time|time}}</el-tag></p>
-                            <p><el-tag type="primary">处理时间：{{scope.row.time|time}}</el-tag></p>
-                            <p><el-tag type="success">签收时间：{{scope.row.time|time}}</el-tag></p>
-                        </div>
-                    </template>
-                </el-table-column> -->
+                <!-- 操作列 -->
                 <el-table-column label="操作" width="180" fixed="right">
                     <template scope="scope">
                         <el-row v-if="scope.row.status ==='ORDER_PLACE'"  type="flex" justify="space-around">
@@ -101,6 +77,7 @@
             </el-table>
         </el-row>
 
+        <!-- 分页器 -->
         <el-row type="flex" justify="space-around" style="margin-top: 30px">
             <el-pagination
                 @size-change="handleSizeChange"
@@ -115,23 +92,30 @@
 </template>
 
 <script>
+    // 引入相关数据请求和工具函数
     import { refuseOrder, addSignOrder, deleteOrder, getOrderList } from '@/api/order';
     import { parseTime } from '@/utils/time';
 
     export default {
         data() {
             return {
+                // 数据列表
                 list: null,
+                // 总数
                 total: 0,
+                // 加载状态
                 listLoading: true,
+                // 列表查询条件
                 listQuery:{
                     offset: 0,
                     pageSize: 10,
                     token:localStorage.getItem('token')
                 },
+                // 拒绝订单表单
                 refuseForm:{
                     token:localStorage.getItem('token'),
                 },
+                // 签收订单表单
                 signForm:{
                     token:localStorage.getItem('token'),
                 },
@@ -142,10 +126,12 @@
                 },
             }
         },
+        // 组件创建时调用
         created() {
             this.fetchData();
         },
         methods: {
+            // 获取数据
             fetchData() {
                 this.listLoading = true;
                 getOrderList(this.listQuery).then(response => {
@@ -154,14 +140,17 @@
                     this.listLoading = false;
                 });
             },
+            // 每页显示条数变化
             handleSizeChange(val) {
                 this.listQuery.pageSize = val;
                 this.fetchData();
             },
+            // 当前页变化
             handleCurrentChange(val) {
                 this.listQuery.offset = this.listQuery.pageSize * (val -1);
                 this.fetchData();
             },
+            // 查看订单详情
             onOrder(id){
                 this.$router.push({
                     path:'/home/order/info',
@@ -170,6 +159,7 @@
                     },
                 });
             },
+            // 派车
             taking(id){
                 this.$router.push({
                     path:'/home/order/taking',
@@ -178,6 +168,7 @@
                     },
                 });
             },
+            // 拒绝订单
             refuse(id) {
                 this.$confirm('此操作将拒绝该订单, 是否继续?', '提示', {
                     confirmButtonText: '确定',
@@ -194,6 +185,7 @@
                     });
                 });
             },
+            // 删除订单
             delete_order(id) {
                 this.$confirm('此操作将删除该订单, 是否继续?', '提示', {
                     confirmButtonText: '确定',
@@ -210,6 +202,7 @@
                     });
                 });
             },
+            // 签收订单
             sign(id){
                 this.$confirm('此操作将签收该订单, 是否继续?', '提示', {
                     confirmButtonText: '确定',
@@ -225,11 +218,8 @@
                         this.fetchData();
                     });
                 });
-                // this.signForm.fk_order_id = id;
-                // this.dialogFormVisible = true;
-                // this.signForm.order_img = '';
-                // this.imagePercente = 0;
             },
+            // 提交签收
             signSubmit(){
                 this.dialogFormVisible = false;
                 addSignOrder(this.signForm).then(response => {
@@ -241,6 +231,7 @@
                 });
             }
         },
+        // 时间过滤器
         filters: {
             time: function (value) {
                 return parseTime(value,"{y}年{m}月{d}日 {hh}:{mm}:{ss}");

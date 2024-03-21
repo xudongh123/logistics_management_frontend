@@ -1,4 +1,5 @@
 <template>
+    <!-- 面包屑导航 -->
     <el-row>
         <el-row>
             <el-breadcrumb separator="/">
@@ -7,6 +8,7 @@
             </el-breadcrumb>
         </el-row>
 
+        <!-- 表格展示费用信息 -->
         <el-row style="margin-top: 10px">
             <el-table :data="list" v-loading.body="listLoading" element-loading-text="拼命加载中" border fit
                       highlight-current-row style="width: 100%">
@@ -14,7 +16,6 @@
                 <el-table-column label="订单编号" width="180">
                     <template scope="scope">
                         {{ scope.row.id }}
-                        <!-- <el-button type="text" @click="onOrder(scope.row.id)">{{ scope.row.id }}</el-button> -->
                     </template>
                 </el-table-column>
                 <el-table-column prop="receive" label="应收账款"/>
@@ -34,20 +35,19 @@
                     </template>
                 </el-table-column>
 
+                <!-- 操作列，可进行收款和付款操作 -->
                 <el-table-column label="操作" width="180">
                     <template scope="scope">
-
                         <el-button-group>
-                            <el-button type="primary" @click="showDialog('receive',scope.row)" icon="caret-left" size="small" v-if="!scope.row.isReceive">收款
-                            </el-button>
-                            <el-button type="danger" @click="showDialog('pay',scope.row)" icon="caret-right" size="small" v-if="!scope.row.isPay">付款
-                            </el-button>
+                            <el-button type="primary" @click="showDialog('receive',scope.row)" icon="caret-left" size="small" v-if="!scope.row.isReceive">收款</el-button>
+                            <el-button type="danger" @click="showDialog('pay',scope.row)" icon="caret-right" size="small" v-if="!scope.row.isPay">付款</el-button>
                         </el-button-group>
                     </template>
                 </el-table-column>
             </el-table>
         </el-row>
 
+        <!-- 分页器 -->
         <el-row type="flex" justify="space-around" style="margin-top: 30px">
             <el-pagination
                 @size-change="handleSizeChange"
@@ -59,42 +59,46 @@
             </el-pagination>
         </el-row>
 
-    <el-dialog title="增加收款" :visible.sync="receiveDialog.isDialogShow">
-        <el-form :model="receiveDialog">
-            <el-form-item label="应收账款">
-                <el-input v-model="receiveDialog.receive" :disabled="true"></el-input>
-            </el-form-item>
-            <el-form-item label="已收款">
-                <el-input-number v-model="receiveDialog.receiveNow" ></el-input-number>
-            </el-form-item>
-        </el-form>
-        <div slot="footer" class="dialog-footer">
-            <el-button @click="receiveDialog.isDialogShow = false">取 消</el-button>
-            <el-button type="primary" @click="receive()">确 定</el-button>
-        </div>
-    </el-dialog>
+        <!-- 增加收款对话框 -->
+        <el-dialog title="增加收款" :visible.sync="receiveDialog.isDialogShow">
+            <el-form :model="receiveDialog">
+                <el-form-item label="应收账款">
+                    <el-input v-model="receiveDialog.receive" :disabled="true"></el-input>
+                </el-form-item>
+                <el-form-item label="已收款">
+                    <el-input-number v-model="receiveDialog.receiveNow" ></el-input-number>
+                </el-form-item>
+            </el-form>
+            <div slot="footer" class="dialog-footer">
+                <el-button @click="receiveDialog.isDialogShow = false">取 消</el-button>
+                <el-button type="primary" @click="receive()">确 定</el-button>
+            </div>
+        </el-dialog>
 
-    <el-dialog title="增加付款" :visible.sync="payDialog.isDialogShow">
-        <el-form :model="payDialog">
-            <el-form-item label="应付账款">
-                <el-input v-model="payDialog.pay" :disabled="true"></el-input>
-            </el-form-item>
-            <el-form-item label="已付款">
-                <el-input-number v-model="payDialog.payNow" ></el-input-number>
-            </el-form-item>
-        </el-form>
-        <div slot="footer" class="dialog-footer">
-            <el-button @click="payDialog.isDialogShow = false">取 消</el-button>
-            <el-button type="primary" @click="pay()">确 定</el-button>
-        </div>
-    </el-dialog>
+        <!-- 增加付款对话框 -->
+        <el-dialog title="增加付款" :visible.sync="payDialog.isDialogShow">
+            <el-form :model="payDialog">
+                <el-form-item label="应付账款">
+                    <el-input v-model="payDialog.pay" :disabled="true"></el-input>
+                </el-form-item>
+                <el-form-item label="已付款">
+                    <el-input-number v-model="payDialog.payNow" ></el-input-number>
+                </el-form-item>
+            </el-form>
+            <div slot="footer" class="dialog-footer">
+                <el-button @click="payDialog.isDialogShow = false">取 消</el-button>
+                <el-button type="primary" @click="pay()">确 定</el-button>
+            </div>
+        </el-dialog>
     </el-row>
 </template>
 
 <script>
+    // 导入相关组件和工具函数
     import { getProfitList, addPay, addReceive } from '@/api/profit';
     import { parseTime } from '@/utils/time';
 
+    // 组件定义
     export default {
         data() {
             return {
@@ -132,6 +136,7 @@
             this.fetchData();
         },
         methods: {
+            // 获取数据
             fetchData() {
                 this.listLoading = true;
                 getProfitList(this.listQuery).then(response => {
@@ -140,6 +145,7 @@
                     this.listLoading = false;
                 });
             },
+            // 处理收款操作
             receive(){
                 const receiveNow = parseFloat(this.receiveDialog.receiveNow);
                 const receive = parseFloat(this.receiveDialog.receive)
@@ -154,6 +160,7 @@
                     this.fetchData();
                 });
             },
+            // 处理付款操作
             pay(){
                 const payNow = parseFloat(this.payDialog.payNow);
                 const pay = parseFloat(this.payDialog.pay);
@@ -168,6 +175,7 @@
                     this.fetchData();
                 });
             },
+            // 显示收款或付款对话框
             showDialog(type,row){
                 if (type == 'pay') {
                     this.payDialog.isDialogShow = true;
@@ -179,14 +187,17 @@
                     this.receiveDialog.receive = row.receive;
                 }
             },
+            // 处理分页大小变化
             handleSizeChange(val) {
                 this.listQuery.pageSize = val;
                 this.fetchData();
             },
+            // 处理当前页数变化
             handleCurrentChange(val) {
                 this.listQuery.offset = this.listQuery.pageSize * (val -1);
                 this.fetchData();
             },
+            // 查看订单详情
             onOrder(id){
                 this.$router.push({
                     path:'/home/order/info',
@@ -197,6 +208,7 @@
             },
         },
         filters: {
+            // 时间格式化过滤器
             // time: function (value) {
             //     if(value == null || value =="")
             //         return "";

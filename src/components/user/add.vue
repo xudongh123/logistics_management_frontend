@@ -1,4 +1,5 @@
 <template>
+    <!-- 面包屑导航 -->
     <el-row v-loading.body="listLoading" element-loading-text="正在提交，请稍后...">
         <el-breadcrumb separator="/">
             <el-breadcrumb-item :to="{ path: '../../home' }">首页</el-breadcrumb-item>
@@ -7,13 +8,16 @@
         </el-breadcrumb>
 
         <el-col style="margin-top: 50px">
+            <!-- 表单 -->
             <el-form :model="ruleForm" :rules="rules" ref="ruleForm" label-width="120px" class="demo-ruleForm">
                 <el-row>
+                    <!-- 账户名 -->
                     <el-col :span="7">
                         <el-form-item label="账户名" prop="username">
                             <el-input v-model="ruleForm.username" placeholder="请输入账户名"></el-input>
                         </el-form-item>
                     </el-col>
+                    <!-- 昵称 -->
                     <el-col :span="7">
                         <el-form-item label="昵称" prop="nickname">
                             <el-input v-model="ruleForm.nickname" placeholder="请输入昵称"></el-input>
@@ -21,6 +25,7 @@
                     </el-col>
                 </el-row>
                 <el-row>
+                    <!-- 性别 -->
                     <el-col :span="7">
                         <el-form-item label="性别" prop="sex">
                             <el-radio-group v-model="ruleForm.sex">
@@ -31,6 +36,7 @@
                     </el-col>
                 </el-row>
                 <el-row>
+                    <!-- 密码 -->
                     <el-col :span="7">
                         <el-form-item label="密码" prop="password">
                             <el-input v-model="ruleForm.password"></el-input>
@@ -38,6 +44,7 @@
                     </el-col>
                 </el-row>
                 <el-row>
+                    <!-- 权限等级 -->
                     <el-col :span="7">
                         <el-form-item label="权限等级">
                             <el-input v-model="ruleForm.permissionLevel"></el-input>
@@ -45,6 +52,7 @@
                     </el-col>
                 </el-row>
 
+                <!-- 操作按钮 -->
                 <el-form-item style="margin-top: 30px" >
                     <el-button type="primary" @click="submitForm('ruleForm')">立即创建</el-button>
                     <el-button @click="resetForm('ruleForm')">重置</el-button>
@@ -54,6 +62,7 @@
 
     </el-row>
 </template>
+
 <script>
     import { addUser } from '@/api/user';
 
@@ -91,9 +100,11 @@
             fetchData() {
             },
             submitForm(formName) {
+                // 提交表单处理
                 this.$refs[formName].validate((valid) => {
                     if (valid) {
                         this.listLoading = true;
+                        // 调用添加用户接口
                         addUser(this.ruleForm).then(response => {
                             this.listLoading = false;
                             this.$message({
@@ -111,6 +122,7 @@
                 });
             },
             resetForm(formName) {
+                // 表单重置
                 this.$refs[formName].resetFields();
             }
         },

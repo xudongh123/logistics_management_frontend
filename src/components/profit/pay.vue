@@ -8,7 +8,6 @@
             </el-breadcrumb>
         </el-row>
 
-
         <el-col style="margin-top: 50px">
             <el-form :model="ruleForm" :rules="rules" ref="ruleForm" label-width="150px" class="demo-ruleForm">
 
@@ -27,6 +26,7 @@
                         </el-form-item>
                     </el-col>
                 </el-row>
+
                 <el-row>
                     <el-col :span="8">
                         <el-form-item label="姓名" prop="name">
@@ -39,6 +39,7 @@
                         </el-form-item>
                     </el-col>
                 </el-row>
+
                 <el-row>
                     <el-col :span="12">
                         <el-form-item label="银行卡" prop="card">
@@ -46,6 +47,7 @@
                         </el-form-item>
                     </el-col>
                 </el-row>
+
                 <el-row>
                     <el-col :span="12">
                         <el-form-item label="身份证号"  prop="idCard">
@@ -53,6 +55,7 @@
                         </el-form-item>
                     </el-col>
                 </el-row>
+
                 <el-row>
                     <el-col :span="8">
                         <el-form-item label="开户行" prop="bank">
