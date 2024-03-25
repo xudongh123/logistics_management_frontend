@@ -38,15 +38,70 @@
                                 <el-form-item label="姓名">
                                     <span>{{ props.row.name }}</span>
                                 </el-form-item>
-                                <!-- 其他表单项略 -->
+                                <el-form-item label="电话">
+                                    <span>{{ props.row.phone }}</span>
+                                </el-form-item>
+                                <el-form-item label="性别">
+                                    <span>{{ props.row.sex }}</span>
+                                </el-form-item>
+                                <el-form-item label="是否短信通知">
+                                    <span>{{ props.row.isSms }}</span>
+                                </el-form-item>
+                                <el-form-item label="银行卡号">
+                                    <span>{{ props.row.bankNumber }}</span>
+                                </el-form-item>
+                                <el-form-item label="开户行地址">
+                                    <span>{{ props.row.bankAddr }}</span>
+                                </el-form-item>
                             </el-col>
                             <el-col :span="10">
-                                <!-- 其他表单项略 -->
+                                <el-form-item label="创建时间">
+                                    <span>{{ props.row.time | time }}</span>
+                                </el-form-item>
+                                <el-form-item label="身份证号码">
+                                    <span>{{ props.row.idCard }}</span>
+                                </el-form-item>
+                                <el-form-item label="邮箱">
+                                    <span>{{ props.row.email }}</span>
+                                </el-form-item>
+                                <el-form-item label="籍贯">
+                                    <span>{{ props.row.hometown }}</span>
+                                </el-form-item>
                             </el-col>
                         </el-form>
                     </template>
                 </el-table-column>
-                <!-- 其他el-table-column表格列组件略 -->
+                <el-table-column prop="name" label="姓名"/>
+                <el-table-column prop="phone" label="手机号"/>
+                <el-table-column
+                    label="性别">
+                    <template scope="scope">
+                        <el-tag type="primary" >{{scope.row.sex}}</el-tag>
+                    </template>
+                </el-table-column>
+                <el-table-column prop="driver.isSms" label="是否短信通知">
+                    <template scope="scope">
+                        <el-tag type="success" v-if="scope.row.isSms">是</el-tag>
+                        <el-tag type="primary" v-if="!scope.row.isSms">否</el-tag>
+                    </template>
+                </el-table-column>
+                <el-table-column
+                    label="添加时间">
+                    <template scope="scope">
+                        <p><el-tag type="gray">{{scope.row.time|time}}</el-tag></p>
+                    </template>
+                </el-table-column>
+
+                <el-table-column label="操作" width="250">
+                    <template scope="scope">
+
+                            <el-button-group>
+                                <!--<el-button type="primary" icon="edit" size="small">编辑</el-button>-->
+                                <!--<el-button type="warning" icon="setting" size="small">重置密码</el-button>-->
+                                <el-button type="danger" @click="deleteData(scope.row.id)" icon="delete" size="small">删除</el-button>
+                            </el-button-group>
+                    </template>
+                </el-table-column>
             </el-table>
         </el-row>
 
